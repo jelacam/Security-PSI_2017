@@ -1,0 +1,6 @@
+C:\Users\jelac\Desktop\XACML_Parser\XACML_Parser\bin\Debug\XACML_Parser.exe.config
+C:\Users\jelac\Desktop\XACML_Parser\XACML_Parser\bin\Debug\XACML_Parser.exe
+C:\Users\jelac\Desktop\XACML_Parser\XACML_Parser\bin\Debug\XACML_Parser.pdb
+C:\Users\jelac\Desktop\XACML_Parser\XACML_Parser\obj\Debug\XACML_Parser.csprojResolveAssemblyReference.cache
+C:\Users\jelac\Desktop\XACML_Parser\XACML_Parser\obj\Debug\XACML_Parser.exe
+C:\Users\jelac\Desktop\XACML_Parser\XACML_Parser\obj\Debug\XACML_Parser.pdb
