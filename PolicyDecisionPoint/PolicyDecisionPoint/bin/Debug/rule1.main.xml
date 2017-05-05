@@ -54,45 +54,5 @@
         </Target>
     </Rule>
 	
-	<Rule 
-            Effect="Permit"
-            RuleId="http://axiomatics.com/alfa/identifier/rule1.raisePOD">
-        <Description>User in the purchasing department can raise purchase orders.</Description>
-        <Target>
-            <AnyOf>
-                <AllOf>
-                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-                        <AttributeValue
-                            DataType="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name">bs@simpsons.com</AttributeValue>
-                        <AttributeDesignator 
-                            AttributeId="department"
-                            DataType="http://www.w3.org/2001/XMLSchema#string"
-                            Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"
-                            MustBePresent="false"
-                        />
-                    </Match>
-                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-                        <AttributeValue
-                            DataType="http://www.w3.org/2001/XMLSchema#string">raise</AttributeValue>
-                        <AttributeDesignator 
-                            AttributeId="actionId"
-                            DataType="http://www.w3.org/2001/XMLSchema#string"
-                            Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action"
-                            MustBePresent="false"
-                        />
-                    </Match>
-                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-                        <AttributeValue
-                            DataType="http://www.w3.org/2001/XMLSchema#string">purchase order</AttributeValue>
-                        <AttributeDesignator 
-                            AttributeId="resourceType"
-                            DataType="http://www.w3.org/2001/XMLSchema#string"
-                            Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
-                            MustBePresent="false"
-                        />
-                    </Match>
-                </AllOf>
-            </AnyOf>
-        </Target>
-    </Rule>
+	
 </Policy>

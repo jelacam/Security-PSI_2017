@@ -1,9 +1,12 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
 
 namespace PolicyDecisionPoint.XAML_Common
 {
     public static class PolicyEvaluateManager
     {
+
+
         /// <summary>
         ///     Metoda vrsi evaluaciju po principu definisanim XACML standardom: Sekcija C.8 First-applicable
         /// </summary>
@@ -12,73 +15,111 @@ namespace PolicyDecisionPoint.XAML_Common
         /// <returns></returns>
         public static DecisionType FirstApplRuleEvaluate(RequestType request, RuleType rule)
         {
-            /// atributi pravila
+            DecisionType Effect = DecisionType.Permit;
 
-            TargetType Target = rule.Target;
-            foreach (AnyOfType AnyOf in Target.AnyOf)
+            if (rule.Effect.Equals(EffectType.Permit))
             {
-                AllOfType[] AllOfs = AnyOf.AllOf;
-                foreach (AllOfType AllOf in AllOfs)
-                {
-                    MatchType[] Matches = AllOf.Match;
-                    foreach (MatchType Match in Matches)
-                    {
-                        AttributeDesignatorType AttributeDesignator = Match.Item as AttributeDesignatorType;
-                        AttributeValueType AttributeValue = Match.AttributeValue;
-
-                        DecisionType decision = CheckIfMatch(AttributeDesignator, AttributeValue, request);
-
-                        if (!decision.Equals(DecisionType.Permit))
-                        {
-                            return decision;
-                        }
-                    }
-                }
+                Effect = DecisionType.Permit;
+            }
+            else if (rule.Effect.Equals(EffectType.Deny))
+            {
+                Effect = DecisionType.Deny;
             }
 
-            return DecisionType.Permit;
-        }
+            /// atributi pravila
+            TargetType Target = rule.Target;
 
-        private static DecisionType CheckIfMatch(AttributeDesignatorType attributeDesignator,
-                                           AttributeValueType attributeValue,
-                                           RequestType request)
-        {
-            /// atributi zahteva
-            AttributesType[] Attributes = request.Attributes;
-            foreach (AttributesType Attribute in Attributes)
+            /// prazan target se poklapa sa svakim request contextom
+            if (Target.AnyOf.Equals(null))
             {
-                if (attributeDesignator.Category.Equals(Attribute.Category))
+                return Effect;
+            }
+
+            try
+            {
+                foreach (AnyOfType AnyOf in Target.AnyOf)
                 {
-                    //ako je kategorija jednaka proveravamo za atribute te kategorije
-                    AttributeType[] AttributesType = Attribute.Attribute;
-                    foreach (AttributeType AttrType in AttributesType)
+                    AllOfType[] AllOfs = AnyOf.AllOf;
+                    foreach (AllOfType AllOf in AllOfs)
                     {
-                        AttributeValueType[] AttributeValues = AttrType.AttributeValue;
-                        foreach (AttributeValueType AttrValue in AttributeValues)
+                        MatchType[] Matches = AllOf.Match;
+                        foreach (MatchType Match in Matches)
                         {
-                            if (AttrValue.DataType.Equals(attributeValue.DataType))
+                            AttributeDesignatorType AttributeDesignator = Match.Item as AttributeDesignatorType;
+                            AttributeValueType AttributeValue = Match.AttributeValue;
+
+                            if (Match.MatchId.Equals("urn:oasis:names:tc:xacml:1.0:function:string-equal"))
                             {
-                                XmlNode[] node = AttrValue.Any as XmlNode[];
-                                string value = node[0].Value;
+                                CheckResult decision = CheckIfMatchStringEqual(AttributeValue, AttributeDesignator, request);
 
-                                XmlNode[] nodea = attributeValue.Any as XmlNode[];
-                                string valuea = nodea[0].Value;
-
-                                if (!value.Equals(valuea))
+                                if (decision.Equals(CheckResult.False))
                                 {
-                                    return DecisionType.Deny;
+                                    return DecisionType.NotApplicable;
+                                }
+                                else if (decision.Equals(CheckResult.Indeterminate))
+                                {
+                                    return DecisionType.Indeterminate;
                                 }
                             }
-                            else
+                        }
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Error: {0}", e.Message);
+                return DecisionType.Indeterminate;
+            }
+
+
+            return Effect;
+        }
+
+        private static CheckResult CheckIfMatchStringEqual(AttributeValueType attributeValue,
+                                                 AttributeDesignatorType attributeDesignator,
+                                                 RequestType request)
+        {
+            try
+            {
+                /// atributi zahteva
+                AttributesType[] Attributes = request.Attributes;
+                foreach (AttributesType Attribute in Attributes)
+                {
+                    if (attributeDesignator.Category.Equals(Attribute.Category))
+                    {
+                        //ako je kategorija jednaka proveravamo za atribute te kategorije
+                        AttributeType[] AttributesType = Attribute.Attribute;
+                        foreach (AttributeType AttrType in AttributesType)
+                        {
+                            AttributeValueType[] AttributeValues = AttrType.AttributeValue;
+                            foreach (AttributeValueType AttrValue in AttributeValues)
                             {
-                                return DecisionType.NotApplicable;
+                                if (AttrValue.DataType.Equals(attributeValue.DataType))
+                                {
+                                    XmlNode[] node = AttrValue.Any as XmlNode[];
+                                    string value = node[0].Value;
+
+                                    XmlNode[] nodeAttr = attributeValue.Any as XmlNode[];
+                                    string valueAttr = nodeAttr[0].Value;
+
+                                    if (value.Equals(valueAttr))
+                                    {
+                                        return CheckResult.True;
+                                    }
+                                }
+
                             }
                         }
                     }
                 }
             }
+            catch(Exception e)
+            {
+                Console.WriteLine("Error: {0}", e.Message);
+                return CheckResult.Indeterminate;
+            }
 
-            return DecisionType.Permit;
+            return CheckResult.False;
         }
     }
 }
