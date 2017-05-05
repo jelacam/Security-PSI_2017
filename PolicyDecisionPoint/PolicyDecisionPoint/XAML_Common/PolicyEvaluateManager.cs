@@ -71,7 +71,7 @@ namespace PolicyDecisionPoint.XAML_Common
                             }
                             else
                             {
-                                return DecisionType.Indeterminate;
+                                return DecisionType.NotApplicable;
                             }
                         }
                     }
