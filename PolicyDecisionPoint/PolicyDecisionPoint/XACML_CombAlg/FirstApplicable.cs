@@ -19,32 +19,33 @@ namespace PolicyDecisionPoint.XACML_CombAlg
         /// </summary>
         /// <param name="rules"></param>
         /// <returns></returns>
-        Decision firstApplicableEffectRuleCombiningAlgorithm(RuleType[] rules)
+        public DecisionType firstApplicableEffectRuleCombiningAlgorithm(RuleType[] rules, RequestType request)
         {
-            Decision decision = Decision.NotApplicable;
+            DecisionType decision = DecisionType.NotApplicable;
 
             foreach(RuleType rule in rules)
             {
-                //decision = evaluate(rule); // metoda koja evaluira pravilo
+                // metoda koja evaluira pravilo 
+                decision = PolicyEvaluateManager.FirstApplRuleEvaluate(request, rule);
 
-                if (decision.Equals(Decision.Deny))
+                if (decision.Equals(DecisionType.Deny))
                 {
-                    return Decision.Deny;
+                    return DecisionType.Deny;
                 }
 
-                if(decision.Equals(Decision.Permit))
+                if(decision.Equals(DecisionType.Permit))
                 {
-                    return Decision.Permit;
+                    return DecisionType.Permit;
                 }
 
-                if (decision.Equals(Decision.Indeterminate))
+                if (decision.Equals(DecisionType.Indeterminate))
                 {
-                    return Decision.Indeterminate;
+                    return DecisionType.Indeterminate;
                 }
                
             }
 
-            return Decision.NotApplicable;
+            return DecisionType.NotApplicable;
         }
     }
 }
