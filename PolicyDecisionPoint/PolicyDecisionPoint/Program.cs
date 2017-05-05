@@ -41,6 +41,9 @@ namespace PolicyDecisionPoint
 
             FirstApplicable firstAppl = new FirstApplicable();
             DecisionType decision = firstAppl.firstApplicableEffectRuleCombiningAlgorithm(rules, request);
+
+            Console.WriteLine(decision.ToString());
+            Console.ReadKey();
         }
     }
 }
