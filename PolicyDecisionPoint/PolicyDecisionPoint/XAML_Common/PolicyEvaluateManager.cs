@@ -45,7 +45,9 @@ namespace PolicyDecisionPoint.XAML_Common
 
             try
             {
-
+                int numberOfMatchAnyOf = 0;
+                int numberOfNoMatchAnyOf = 0;
+                int numberOfIndeterminateAnyOf = 0;
 
                 foreach (AnyOfType AnyOf in Target.AnyOf)
                 {
@@ -88,13 +90,13 @@ namespace PolicyDecisionPoint.XAML_Common
                             numberOfNoMatchAllOf++;
                         }
                         
-                        if (numberOfFalseMatch==0 && numberOfIndeterminateMatch>0)
+                        else if (numberOfFalseMatch==0 && numberOfIndeterminateMatch>0)
                         {
                             AllOfValue = INDETERMINATE;
                             numberOfIndeterminateAllOf++;
                         }
 
-                        if (numberOfFalseMatch == 0 && numberOfIndeterminateMatch == 0)
+                        else if (numberOfFalseMatch == 0 && numberOfIndeterminateMatch == 0)
                         {
                             AllOfValue = MATCH;
                             numberOfMatchAllOf++;
@@ -107,25 +109,42 @@ namespace PolicyDecisionPoint.XAML_Common
                     if (numberOfIndeterminateAllOf > 0 && numberOfMatchAllOf == 0)
                     {
                         AnyOfValue = INDETERMINATE;
+                        numberOfIndeterminateAnyOf++;
                     }
 
-                    if (numberOfNoMatchAllOf > 0 && numberOfIndeterminateAllOf == 0)
+                    else if (numberOfNoMatchAllOf > 0 && numberOfIndeterminateAllOf == 0)
                     {
                         AnyOfValue = NO_MATCH;
+                        numberOfNoMatchAnyOf++;
+                        
                     }
 
-                    if (numberOfMatchAllOf > 0)
+                    else if (numberOfMatchAllOf > 0)
                     {
                         AnyOfValue = MATCH;
+                        numberOfMatchAnyOf++;
                     }
 
-                    if (AnyOfValue.Equals(NO_MATCH))
-                    {
-                        return DecisionType.NotApplicable;
-                    }
+                    //if (AnyOfValue.Equals(NO_MATCH))
+                    //{
+                    //    return DecisionType.NotApplicable;
+                    //}
                 }
 
-               
+                
+                if (numberOfMatchAnyOf > 0 && numberOfIndeterminateAnyOf == 0)
+                {
+                    return Effect;
+                }
+                else if (numberOfNoMatchAnyOf > 0)
+                {
+                    return DecisionType.NotApplicable;
+                }
+                else
+                {
+                    return DecisionType.Indeterminate;
+                }
+
             }
             catch (Exception e)
             {
@@ -133,7 +152,7 @@ namespace PolicyDecisionPoint.XAML_Common
                 return DecisionType.Indeterminate;
             }
 
-            return Effect;
+            
         }
 
         /// <summary>
