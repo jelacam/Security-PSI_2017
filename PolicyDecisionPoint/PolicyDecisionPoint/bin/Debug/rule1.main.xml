@@ -23,7 +23,7 @@
                         <AttributeValue
                             DataType="http://www.w3.org/2001/XMLSchema#string">purchasing</AttributeValue>
                         <AttributeDesignator 
-                            AttributeId="department"
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:subject:department"
                             DataType="http://www.w3.org/2001/XMLSchema#string"
                             Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"
                             MustBePresent="false"
@@ -33,7 +33,7 @@
                         <AttributeValue
                             DataType="http://www.w3.org/2001/XMLSchema#string">raise</AttributeValue>
                         <AttributeDesignator 
-                            AttributeId="actionId"
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
                             DataType="http://www.w3.org/2001/XMLSchema#string"
                             Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action"
                             MustBePresent="false"
@@ -43,14 +43,84 @@
                         <AttributeValue
                             DataType="http://www.w3.org/2001/XMLSchema#string">purchase order</AttributeValue>
                         <AttributeDesignator 
-                            AttributeId="resourceType"
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#string"
                             Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
                             MustBePresent="false"
                         />
                     </Match>
                 </AllOf>
+				
+				<AllOf>
+                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">purchasing2</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:subject:department"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"
+                            MustBePresent="false"
+                        />
+                    </Match>
+                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">raise2</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action"
+                            MustBePresent="false"
+                        />
+                    </Match>
+                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">purchase order2</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+                            MustBePresent="false"
+                        />
+                    </Match>
+                </AllOf>
+				
+				
             </AnyOf>
+			
+			<AnyOf>
+                <AllOf>
+                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">purchasing</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:subject:department"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"
+                            MustBePresent="false"
+                        />
+                    </Match>
+                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">raise</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action"
+                            MustBePresent="false"
+                        />
+                    </Match>
+                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">purchase order</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+                            MustBePresent="false"
+                        />
+                    </Match>
+                </AllOf>
+			</AnyOf>
         </Target>
     </Rule>
 	

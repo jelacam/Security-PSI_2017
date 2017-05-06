@@ -4,15 +4,6 @@
    xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd"
    ReturnPolicyIdList="false">
    
-	<Attributes Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
-		
-		<Attribute IncludeInResult="false"
-			AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id">
-			<AttributeValue
-				DataType="http://www.w3.org/2001/XMLSchema#string">purchasing</AttributeValue>
-		</Attribute>
-	</Attributes>
-   
 	<Attributes
 		 Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
 		 <Attribute IncludeInResult="false"
@@ -29,5 +20,12 @@
 			 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
 			   >purchase order</AttributeValue>
 		 </Attribute>
+	</Attributes>
+	
+	<Attributes Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+		<Attribute IncludeInResult="false"
+			AttributeId="urn:oasis:names:tc:xacml:1.0:subject:department">
+			<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">purchasing</AttributeValue>
+		</Attribute>
 	</Attributes>
 </Request>
