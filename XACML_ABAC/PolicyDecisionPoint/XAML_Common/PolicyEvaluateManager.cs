@@ -31,19 +31,21 @@ namespace PolicyDecisionPoint.XAML_Common
             string AllOfValue = string.Empty;
             string AnyOfValue = string.Empty;
 
-            /// atributi pravila
-            TargetType Target = rule.Target;
+            DecisionType TargetValue = DecisionType.NotApplicable;
 
+            bool ConditionValue = false;
+
+            TargetType Target = rule.Target;
 
             /// prazan target se poklapa sa svakim request contextom
             if (Target == null)
             {
-                return Effect;
+                return  Effect;
             }
 
             if (Target.AnyOf == null)
             {
-                return Effect;
+                return  Effect;
             }
 
             try
@@ -52,80 +54,87 @@ namespace PolicyDecisionPoint.XAML_Common
                 int numberOfNoMatchAnyOf = 0;
                 int numberOfIndeterminateAnyOf = 0;
 
-                foreach (AnyOfType AnyOf in Target.AnyOf)
+                if (Target != null)
                 {
-                    int numberOfMatchAllOf = 0;
-                    int numberOfIndeterminateAllOf = 0;
-                    int numberOfNoMatchAllOf = 0;
-
-                    AllOfType[] AllOfs = AnyOf.AllOf;
-                    foreach (AllOfType AllOf in AllOfs)
+                    if (Target.AnyOf != null)
                     {
-                        int numberOfFalseMatch = 0;
-                        int numberOfIndeterminateMatch = 0;
-
-                        MatchType[] Matches = AllOf.Match;
-                        foreach (MatchType Match in Matches)
+                        foreach (AnyOfType AnyOf in Target.AnyOf)
                         {
-                            AttributeDesignatorType AttributeDesignator = Match.Item as AttributeDesignatorType;
-                            AttributeValueType AttributeValue = Match.AttributeValue;
+                            int numberOfMatchAllOf = 0;
+                            int numberOfIndeterminateAllOf = 0;
+                            int numberOfNoMatchAllOf = 0;
 
-                            // Evaluacija Match elementa prema string-equal funkciji
-                            if (Match.MatchId.Equals("urn:oasis:names:tc:xacml:1.0:function:string-equal"))
+                            AllOfType[] AllOfs = AnyOf.AllOf;
+                            foreach (AllOfType AllOf in AllOfs)
                             {
-                                CheckResult decision = CheckIfMatchStringEqual(AttributeValue, AttributeDesignator, request);
+                                int numberOfFalseMatch = 0;
+                                int numberOfIndeterminateMatch = 0;
 
-                                if (decision.Equals(CheckResult.False))
+                                MatchType[] Matches = AllOf.Match;
+                                foreach (MatchType Match in Matches)
                                 {
-                                    //return DecisionType.NotApplicable;
-                                    numberOfFalseMatch++;
+                                    AttributeDesignatorType AttributeDesignator = Match.Item as AttributeDesignatorType;
+                                    AttributeValueType AttributeValue = Match.AttributeValue;
+
+                                    // Evaluacija Match elementa prema string-equal funkciji
+                                    if (Match.MatchId.Equals("urn:oasis:names:tc:xacml:1.0:function:string-equal"))
+                                    {
+                                        CheckResult decision = CheckIfMatchStringEqual(AttributeValue, AttributeDesignator, request);
+
+                                        if (decision.Equals(CheckResult.False))
+                                        {
+                                            numberOfFalseMatch++;
+                                        }
+                                        else if (decision.Equals(CheckResult.Indeterminate))
+                                        {
+                                            numberOfIndeterminateMatch++;
+                                        }
+                                    }
                                 }
-                                else if (decision.Equals(CheckResult.Indeterminate))
+
+                                /// AllOf evaluacija
+                                if (numberOfFalseMatch != 0)
                                 {
-                                    //return DecisionType.Indeterminate;
-                                    numberOfIndeterminateMatch++;
+                                    AllOfValue = NO_MATCH;
+                                    numberOfNoMatchAllOf++;
+                                }
+                                else if (numberOfIndeterminateMatch > 0)
+                                {
+                                    AllOfValue = INDETERMINATE;
+                                    numberOfIndeterminateAllOf++;
+                                }
+                                else if (numberOfFalseMatch == 0 && numberOfIndeterminateMatch == 0)
+                                {
+                                    AllOfValue = MATCH;
+                                    numberOfMatchAllOf++;
                                 }
                             }
-                        }
 
-                        /// AllOf evaluacija
-                        if (numberOfFalseMatch != 0)
-                        {
-                            AllOfValue = NO_MATCH;
-                            numberOfNoMatchAllOf++;
+                            /// AnyOf evaluacija
+                            if (numberOfIndeterminateAllOf > 0 && numberOfMatchAllOf == 0)
+                            {
+                                AnyOfValue = INDETERMINATE;
+                                numberOfIndeterminateAnyOf++;
+                            }
+                            else if (numberOfMatchAllOf > 0)
+                            {
+                                AnyOfValue = MATCH;
+                                numberOfMatchAnyOf++;
+                            }
+                            else if (numberOfNoMatchAllOf > 0)
+                            {
+                                AnyOfValue = NO_MATCH;
+                                numberOfNoMatchAnyOf++;
+                            }
                         }
-                        else if (numberOfIndeterminateMatch > 0)
-                        {
-                            AllOfValue = INDETERMINATE;
-                            numberOfIndeterminateAllOf++;
-                        }
-                        else if (numberOfFalseMatch == 0 && numberOfIndeterminateMatch == 0)
-                        {
-                            AllOfValue = MATCH;
-                            numberOfMatchAllOf++;
-                        }
-                    }
-
-                    /// AnyOf evaluacija
-                    if (numberOfIndeterminateAllOf > 0 && numberOfMatchAllOf == 0)
-                    {
-                        AnyOfValue = INDETERMINATE;
-                        numberOfIndeterminateAnyOf++;
-                    }
-                    else if (numberOfMatchAllOf > 0)
-                    {
-                        AnyOfValue = MATCH;
-                        numberOfMatchAnyOf++;
-                    }
-                    else if (numberOfNoMatchAllOf > 0)
-                    {
-                        AnyOfValue = NO_MATCH;
-                        numberOfNoMatchAnyOf++;
                     }
                 }
 
-                // CONDITION EVALUACIJA
-
+                //// CONDITION EVALUACIJA
+                //if (rule.Condition == null)
+                //{
+                //    ConditionValue = true;
+                //}
                 // RULE EVALUACIJA
 
                 if (numberOfNoMatchAnyOf > 0)
@@ -134,12 +143,14 @@ namespace PolicyDecisionPoint.XAML_Common
                 }
                 else if (numberOfMatchAnyOf > 0 && numberOfIndeterminateAnyOf == 0)
                 {
-                    return Effect;
+                    return  Effect;
                 }
                 else
                 {
-                    return DecisionType.Indeterminate;
+                    return  DecisionType.Indeterminate;
                 }
+
+              
             }
             catch (Exception e)
             {
@@ -174,7 +185,6 @@ namespace PolicyDecisionPoint.XAML_Common
                     /// provera jednakosti Category atributa
                     if (attributeDesignator.Category.Equals(Attribute.Category))
                     {
-                        
                         exist = true;
                         AttributeType[] AttributesType = Attribute.Attribute;
 
@@ -222,6 +232,11 @@ namespace PolicyDecisionPoint.XAML_Common
             }
 
             return CheckResult.False;
+        }
+
+        private static CheckResult ConditionEvaluation()
+        {
+            return CheckResult.Indeterminate;
         }
     }
 }

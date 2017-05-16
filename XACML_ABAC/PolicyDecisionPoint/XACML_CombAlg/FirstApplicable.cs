@@ -10,7 +10,7 @@ namespace PolicyDecisionPoint.XACML_CombAlg
         public string Identifier { get => identifier; set => identifier = value; }
 
         /// <summary>
-        ///     Metoda koja implementira logiku donosenja odluke algoritmom FirstApplicable kod pravila
+        ///     Metoda koja implementira logiku donosenja odluke algoritmom FirstApplicable
         /// </summary>
         /// <param name="rules"></param>
         /// <returns></returns>

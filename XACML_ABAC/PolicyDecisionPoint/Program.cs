@@ -23,11 +23,12 @@ namespace PolicyDecisionPoint
             PolicyType policy = new PolicyType();
             policy = value as PolicyType;
 
+            /// deserijalizacija xml dokumenta koji specificira xaclm zahtev 
+            serializer = new XmlSerializer(typeof(RequestType));
+            reader = new StreamReader("request.example.xml");
+            var val = serializer.Deserialize(reader);
 
-            XmlSerializer ser1 = new XmlSerializer(typeof(RequestType));
-            StreamReader re1 = new StreamReader("request.example.xml");
-            var val = ser1.Deserialize(re1);
-
+            /// kreiranje objekta koji predstavlja xacml zahtev
             RequestType request = new RequestType();
             request = val as RequestType;
 
@@ -43,6 +44,16 @@ namespace PolicyDecisionPoint
             DecisionType decision = firstAppl.firstApplicableEffectRuleCombiningAlgorithm(rules, request);
 
             Console.WriteLine(decision.ToString());
+
+            ResponseType response = new ResponseType();
+            ResultType result = new ResultType();
+            result.Decision = decision;
+            response.Result = new ResultType[1];
+            response.Result[0] = result;
+
+
+
+
             Console.ReadKey();
         }
     }
