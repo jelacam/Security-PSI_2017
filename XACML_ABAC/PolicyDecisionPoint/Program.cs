@@ -16,7 +16,8 @@ namespace PolicyDecisionPoint
         {
             /// deserijalizacija xml dokumenta koji specificira autorizacionu politiku
             XmlSerializer serializer = new XmlSerializer(typeof(PolicyType));
-            StreamReader reader = new StreamReader("rule1.main.xml");
+            //StreamReader reader = new StreamReader("rule1.main.xml");
+            StreamReader reader = new StreamReader("TimeRange.checkTimeInRange.xml");
             var value = serializer.Deserialize(reader);
 
             /// kreiranje objekta koji predstavlja definisanu politiku 

@@ -4,8 +4,16 @@
     {
         True, False, Indeterminate
     }
-    //public enum CombiningAlgorithms
-    //{
-    //    FirstApplicable = "urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
-    //}
+
+    public enum TargetResult
+    {
+        Match, NoMatch, Indeterminate
+    }
+
+    public enum ConditionResult
+    {
+        True, False, Indeterminate, DontCare
+    }
+    
+
 }

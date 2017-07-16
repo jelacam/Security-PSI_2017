@@ -4,8 +4,7 @@
    xsi:schemaLocation="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17 http://docs.oasis-open.org/xacml/3.0/xacml-core-v3-schema-wd-17.xsd"
    ReturnPolicyIdList="false">
    
-	<Attributes
-		 Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
+	<Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
 		 <Attribute IncludeInResult="false"
 			AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id">
 		   <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
@@ -13,8 +12,7 @@
 		 </Attribute>
 	</Attributes>
 
-	<Attributes
-		 Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+	<Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
 		 <Attribute IncludeInResult="false"
 			 AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
 			 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
@@ -26,6 +24,13 @@
 		<Attribute IncludeInResult="false"
 			AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id">
 			<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">student</AttributeValue>
+		</Attribute>
+	</Attributes>
+	
+	<Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment">
+		<Attribute  IncludeInResult="false"
+			AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-time">
+			<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#time">07:00:00+02:00</AttributeValue>
 		</Attribute>
 	</Attributes>
 </Request>

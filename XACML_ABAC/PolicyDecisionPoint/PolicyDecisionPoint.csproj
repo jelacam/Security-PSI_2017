@@ -45,9 +45,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XACML_CombAlg\FirstApplicable.cs" />
+    <Compile Include="XACML_Functions\StringEqual.cs" />
+    <Compile Include="XACML_Functions\TimeInRange.cs" />
     <Compile Include="XACML_Model\Xacml_xsd.cs" />
+    <Compile Include="XAML_Common\ConditionEvaluate.cs" />
     <Compile Include="XAML_Common\Enums.cs" />
     <Compile Include="XAML_Common\PolicyEvaluateManager.cs" />
+    <Compile Include="XAML_Common\TargetEvaluate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

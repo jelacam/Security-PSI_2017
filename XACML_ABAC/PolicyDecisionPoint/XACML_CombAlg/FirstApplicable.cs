@@ -23,7 +23,7 @@ namespace PolicyDecisionPoint.XACML_CombAlg
                 // metoda koja evaluira pravilo
                 try
                 {
-                    decision = PolicyEvaluateManager.FirstApplRuleEvaluate(request, rule);
+                    decision = PolicyEvaluateManager.RuleEvaluate(request, rule);
                 }
                 catch (Exception e)
                 {

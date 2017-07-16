@@ -43,6 +43,31 @@
                 </AllOf>
 			</AnyOf>
         </Target>
-		<Condition/>
+		
+		<Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:time-in-range" >
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only" >
+                    <AttributeDesignator 
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-time"
+                        DataType="http://www.w3.org/2001/XMLSchema#time"
+                        Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"
+                        MustBePresent="false"
+                    />
+                </Apply>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only" >
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-bag" >
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#time">09:00:00+02:00</AttributeValue>
+                    </Apply>
+                </Apply>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only" >
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-bag" >
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#time">19:00:00+02:00</AttributeValue>
+                    </Apply>
+                </Apply>
+            </Apply>
+        </Condition>
+		
     </Rule>
 </Policy>
