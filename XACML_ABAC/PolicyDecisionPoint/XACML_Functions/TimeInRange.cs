@@ -8,9 +8,9 @@ namespace PolicyDecisionPoint.XACML_Functions
 {
     public static class TimeInRange
     {
-        public static bool CheckIfMatch(DateTime currentTime, DateTime lowerBound, DateTime upperBoud)
+        public static bool CheckIfMatch(DateTime currentTime, DateTime lowerBound, DateTime upperBound)
         {
-            if (currentTime >= lowerBound && currentTime <= upperBoud)
+            if (currentTime >= lowerBound && currentTime <= upperBound)
             {
                 return true;
             }

@@ -38,19 +38,8 @@ namespace PolicyDecisionPoint.XAML_Common
 
                 ConditionResult ConditionValue = ConditionEvaluate.CheckCondition(Condition, request);
 
-                //// CONDITION EVALUACIJA
-                //if (rule.Condition == null)
-                //{
-                //    ConditionValue = ConditionResult.True;
-                //}
-                //else if (rule.Condition.Item == null)
-                //{
-                //    ConditionValue = ConditionResult.True;
-                //}
-                //else
-                //{
-                //    // ConditionCheck
-                //}
+                Console.WriteLine("Target evaluation: {0}", TargetValue.ToString());
+                Console.WriteLine("Condition evaluation: {0}", ConditionValue.ToString());
 
                 // RULE EVALUACIJA
 

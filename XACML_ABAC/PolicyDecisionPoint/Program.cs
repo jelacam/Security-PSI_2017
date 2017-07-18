@@ -1,9 +1,12 @@
-﻿using PolicyDecisionPoint.XACML_CombAlg;
+﻿using Contracts;
+using PolicyDecisionPoint.XACML_CombAlg;
 using PolicyDecisionPoint.XAML_Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -14,48 +17,28 @@ namespace PolicyDecisionPoint
     {
         static void Main(string[] args)
         {
-            /// deserijalizacija xml dokumenta koji specificira autorizacionu politiku
-            XmlSerializer serializer = new XmlSerializer(typeof(PolicyType));
-            //StreamReader reader = new StreamReader("rule1.main.xml");
-            StreamReader reader = new StreamReader("TimeRange.checkTimeInRange.xml");
-            var value = serializer.Deserialize(reader);
+            NetTcpBinding binding = new NetTcpBinding();
+            string address = "net.tcp://localhost:8000/PdpService";
 
-            /// kreiranje objekta koji predstavlja definisanu politiku 
-            PolicyType policy = new PolicyType();
-            policy = value as PolicyType;
+            ServiceHost host = new ServiceHost(typeof(ContextHandler));
+            host.AddServiceEndpoint(typeof(IPdpContract), binding, address);
 
-            /// deserijalizacija xml dokumenta koji specificira xaclm zahtev 
-            serializer = new XmlSerializer(typeof(RequestType));
-            reader = new StreamReader("request.example.xml");
-            var val = serializer.Deserialize(reader);
+            host.Description.Behaviors.Remove(typeof(ServiceDebugBehavior));
+            host.Description.Behaviors.Add(new ServiceDebugBehavior() { IncludeExceptionDetailInFaults = true });
 
-            /// kreiranje objekta koji predstavlja xacml zahtev
-            RequestType request = new RequestType();
-            request = val as RequestType;
+           
 
-            List<RuleType> rulesL = new List<RuleType>();
-            foreach(RuleType rule in policy.Items)
+            try
             {
-                rulesL.Add(rule);
+                host.Open();
+                Console.WriteLine("PdpService is opened. Press <enter> to finish ... ");
+                Console.ReadLine();
+                host.Close();
             }
-
-            RuleType[] rules = rulesL.ToArray();
-
-            FirstApplicable firstAppl = new FirstApplicable();
-            DecisionType decision = firstAppl.firstApplicableEffectRuleCombiningAlgorithm(rules, request);
-
-            Console.WriteLine(decision.ToString());
-
-            ResponseType response = new ResponseType();
-            ResultType result = new ResultType();
-            result.Decision = decision;
-            response.Result = new ResultType[1];
-            response.Result[0] = result;
-
-
-
-
-            Console.ReadKey();
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to stablish connection with service. {0}", e.Message);
+            }
         }
     }
 }

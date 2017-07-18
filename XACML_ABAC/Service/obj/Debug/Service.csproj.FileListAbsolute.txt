@@ -1,0 +1,13 @@
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\bin\Debug\Service.exe.config
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\bin\Debug\Service.exe
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\bin\Debug\Service.pdb
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\bin\Debug\Contracts.dll
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\bin\Debug\PolicyDecisionPoint.exe
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\bin\Debug\PolicyEnforcementPoint.dll
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\bin\Debug\Contracts.pdb
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\bin\Debug\PolicyDecisionPoint.pdb
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\bin\Debug\PolicyDecisionPoint.exe.config
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\bin\Debug\PolicyEnforcementPoint.pdb
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\obj\Debug\Service.exe
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Service\obj\Debug\Service.pdb

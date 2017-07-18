@@ -2014,8 +2014,9 @@ public partial class RuleType {
     private string ruleIdField;
     
     private EffectType effectField;
-    
+
     /// <remarks/>
+ 
     public string Description {
         get {
             return this.descriptionField;
