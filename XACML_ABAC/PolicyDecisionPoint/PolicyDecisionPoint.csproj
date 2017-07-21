@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextHandler.cs" />
+    <Compile Include="PdpService.cs" />
+    <Compile Include="PipProxy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XACML_CombAlg\FirstApplicable.cs" />

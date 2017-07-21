@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using System.IdentityModel.Services;
+using System.Security.Permissions;
 
 namespace Contracts
 {
     [ServiceContract]
     public interface IContract
     {
-        [OperationContract]
+        [OperationContract(Action = "view_remaining courses")]
         string Test();
 
     }

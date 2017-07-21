@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel.Services" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IPipContract.cs" />
+    <Compile Include="DomainAttribute.cs" />
+    <Compile Include="Contracts\IContextHandler.cs" />
     <Compile Include="Contracts\IContract.cs" />
     <Compile Include="Contracts\IPdpContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

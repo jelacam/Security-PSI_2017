@@ -1,4 +1,5 @@
 ﻿using Contracts;
+using Contracts.Contracts;
 using PolicyDecisionPoint.XACML_CombAlg;
 using PolicyDecisionPoint.XAML_Common;
 using System;
@@ -18,10 +19,14 @@ namespace PolicyDecisionPoint
         static void Main(string[] args)
         {
             NetTcpBinding binding = new NetTcpBinding();
+            binding.CloseTimeout = new TimeSpan(0, 10, 0);
+            binding.OpenTimeout = new TimeSpan(0, 10, 0);
+            binding.ReceiveTimeout = new TimeSpan(0, 10, 0);
+            binding.SendTimeout = new TimeSpan(0, 10, 0);
             string address = "net.tcp://localhost:8000/PdpService";
 
             ServiceHost host = new ServiceHost(typeof(ContextHandler));
-            host.AddServiceEndpoint(typeof(IPdpContract), binding, address);
+            host.AddServiceEndpoint(typeof(IContextHandler), binding, address);
 
             host.Description.Behaviors.Remove(typeof(ServiceDebugBehavior));
             host.Description.Behaviors.Add(new ServiceDebugBehavior() { IncludeExceptionDetailInFaults = true });

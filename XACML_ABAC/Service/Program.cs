@@ -14,7 +14,14 @@ namespace Service
     {
         static void Main(string[] args)
         {
+
+            var time = DateTime.Now;
+
             NetTcpBinding binding = new NetTcpBinding();
+            binding.CloseTimeout = new TimeSpan(0, 10, 0);
+            binding.OpenTimeout = new TimeSpan(0, 10, 0); 
+            binding.ReceiveTimeout = new TimeSpan(0, 10, 0); 
+            binding.SendTimeout = new TimeSpan(0, 10, 0);
             string address = "net.tcp://localhost:9999/WCFService";
 
             ServiceHost host = new ServiceHost(typeof(WcfService));
@@ -25,6 +32,8 @@ namespace Service
 
             // podsavanje koriscenja custom managera
             host.Authorization.ServiceAuthorizationManager = new PepAuthorizationManager();
+            //host.Authorization.PrincipalPermissionMode = PrincipalPermissionMode.Custom;
+
 
             try
             {

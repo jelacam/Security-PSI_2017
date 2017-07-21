@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Contracts\Common.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyEnforcementPoint", "PolicyEnforcementPoint\PolicyEnforcementPoint.csproj", "{331B3C5F-767B-43D4-9D77-91450B241786}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyInformationPoint", "PolicyInformationPoint\PolicyInformationPoint.csproj", "{F6DCBA10-6698-42C3-BFDF-EA336BD1DC80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{331B3C5F-767B-43D4-9D77-91450B241786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{331B3C5F-767B-43D4-9D77-91450B241786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{331B3C5F-767B-43D4-9D77-91450B241786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6DCBA10-6698-42C3-BFDF-EA336BD1DC80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6DCBA10-6698-42C3-BFDF-EA336BD1DC80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6DCBA10-6698-42C3-BFDF-EA336BD1DC80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6DCBA10-6698-42C3-BFDF-EA336BD1DC80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

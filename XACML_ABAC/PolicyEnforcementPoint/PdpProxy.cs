@@ -11,7 +11,7 @@ namespace PolicyEnforcementPoint
         public PdpProxy(NetTcpBinding binding, EndpointAddress address)
             : base(binding, address)
         {
-            factory = this.CreateChannel();
+            factory = CreateChannel();
         }
 
         public DecisionType Evaluate()

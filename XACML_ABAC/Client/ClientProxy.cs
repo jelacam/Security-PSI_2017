@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ServiceModel;
 using System.ServiceModel.Security;
 using Contracts;
+using System.ServiceModel.Channels;
 
 namespace Client
 {
@@ -21,7 +22,9 @@ namespace Client
         public string Test()
         {
             try
-            {
+            { 
+                MessageHeader header = MessageHeader.CreateHeader("Action", string.Empty, "Read");
+                
                 return factory.Test();
             }
             catch (Exception e)
