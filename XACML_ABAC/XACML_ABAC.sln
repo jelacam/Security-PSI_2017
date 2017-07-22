@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyDecisionPoint", "PolicyDecisionPoint\PolicyDecisionPoint.csproj", "{DA50294C-D06B-4E7A-A6F7-7B361729D38C}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyEnforcementPoint", "PolicyEnforcementPoint\PolicyEnforcementPoint.csproj", "{331B3C5F-767B-43D4-9D77-91450B241786}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyInformationPoint", "PolicyInformationPoint\PolicyInformationPoint.csproj", "{F6DCBA10-6698-42C3-BFDF-EA336BD1DC80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyAdministrationPoint", "PolicyAdministrationPoint\PolicyAdministrationPoint.csproj", "{BDB0467E-B393-4DDF-AACB-46B63DD4CF2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{F6DCBA10-6698-42C3-BFDF-EA336BD1DC80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6DCBA10-6698-42C3-BFDF-EA336BD1DC80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6DCBA10-6698-42C3-BFDF-EA336BD1DC80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDB0467E-B393-4DDF-AACB-46B63DD4CF2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDB0467E-B393-4DDF-AACB-46B63DD4CF2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDB0467E-B393-4DDF-AACB-46B63DD4CF2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDB0467E-B393-4DDF-AACB-46B63DD4CF2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
