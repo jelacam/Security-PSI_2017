@@ -1,5 +1,6 @@
 ﻿using PolicyDecisionPoint.XACML_Functions;
 using System;
+using System.Collections.Generic;
 using System.Xml;
 
 namespace PolicyDecisionPoint.XAML_Common
@@ -43,43 +44,23 @@ namespace PolicyDecisionPoint.XAML_Common
                 DateTime upperBoundTimeValue = DateTime.Parse(upperBoundTime, System.Globalization.CultureInfo.CurrentCulture);
                 DateTime currentTime = new DateTime();
 
-                bool exits = false;
-                /// atributi zahteva
-                AttributesType[] Attributes = request.Attributes;
-                foreach (AttributesType Attribute in Attributes)
+                bool exists = false;
+                List<AttributeType> Attributes = new List<AttributeType>(2);
+
+                Attributes = AttributeDesignatorManager.RequestBagOfValues(attributeDesignator, request);
+
+                if (Attributes.Count == 0)
                 {
-                    /// provera jednakosti Category atributa
-                    if (attributeDesignator.Category.Equals(Attribute.Category))
-                    {
-                        AttributeType[] AttributesType = Attribute.Attribute;
-
-                        foreach (AttributeType AttrType in AttributesType)
-                        {
-                            /// provera jednakosti AttributeId atributa
-                            if (attributeDesignator.AttributeId.Equals(AttrType.AttributeId))
-                            {
-                                AttributeValueType[] AttributeValues = AttrType.AttributeValue;
-                                foreach (AttributeValueType AttrValue in AttributeValues)
-                                {
-                                    if (AttrValue.DataType.Equals(attributeDesignator.DataType))
-                                    {
-                                        XmlNode[] node = AttrValue.Any as XmlNode[];
-                                        string value = node[0].Value;
-
-                                        currentTime = DateTime.Parse(value, System.Globalization.CultureInfo.CurrentCulture);
-
-                                        TimeConditionResult = TimeInRange.CheckIfMatch(currentTime, lowerBoundTimeValue, upperBoundTimeValue);
-                                        exits = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    // PDP zahteva od PIP dobavljanje atributa koji su potrebni
+                    ContextHandler ch = new ContextHandler();
+                    Attributes = ch.RequestForEnvironmentAttribute(attributeDesignator);
                 }
 
-                if (!exits)
+                TimeConditionResult = TimeConditionEvaluation(lowerBoundTimeValue, upperBoundTimeValue, Attributes, out exists);
+
+                if (!exists)
                 {
-                    // exist je false
+                    // exist je false - nema trazenog atributa u requestu - PDP zahteva dobavljanje atributa od PIP
                     Result = ConditionResult.Indeterminate;
                 }
                 else if (TimeConditionResult)
@@ -97,6 +78,27 @@ namespace PolicyDecisionPoint.XAML_Common
             }
 
             return Result;
+        }
+
+        private static bool TimeConditionEvaluation(DateTime lowerBoundTimeValue, DateTime upperBoundTimeValue, List<AttributeType> Attributes, out bool exists)
+        {
+            foreach (AttributeType attr in Attributes)
+            {
+                AttributeValueType[] AttrValues = attr.AttributeValue;
+
+                foreach (AttributeValueType AttrValue in AttrValues)
+                {
+                    XmlNode[] node = AttrValue.Any as XmlNode[];
+                    string value = node[0].Value;
+
+                    DateTime currentTime = DateTime.Parse(value, System.Globalization.CultureInfo.CurrentCulture);
+                    exists = true;
+                    return TimeInRange.CheckIfMatch(currentTime, lowerBoundTimeValue, upperBoundTimeValue);
+                }
+            }
+
+            exists = false;
+            return false;
         }
     }
 }

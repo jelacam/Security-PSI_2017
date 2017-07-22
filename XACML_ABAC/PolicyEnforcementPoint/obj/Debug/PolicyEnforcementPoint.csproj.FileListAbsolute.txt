@@ -1,7 +1,7 @@
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyEnforcementPoint\bin\Debug\PolicyEnforcementPoint.dll
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyEnforcementPoint\bin\Debug\PolicyEnforcementPoint.pdb
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyEnforcementPoint\obj\Debug\PolicyEnforcementPoint.dll
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyEnforcementPoint\obj\Debug\PolicyEnforcementPoint.pdb
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyEnforcementPoint\bin\Debug\Contracts.dll
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyEnforcementPoint\bin\Debug\Contracts.pdb
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyEnforcementPoint\obj\Debug\PolicyEnforcementPoint.csprojResolveAssemblyReference.cache
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyEnforcementPoint\obj\Debug\PolicyEnforcementPoint.dll
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyEnforcementPoint\obj\Debug\PolicyEnforcementPoint.pdb

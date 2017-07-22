@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="XAML_Common\AttributeDesignatorManager.cs" />
     <Compile Include="ContextHandler.cs" />
     <Compile Include="PdpService.cs" />
     <Compile Include="PipProxy.cs" />

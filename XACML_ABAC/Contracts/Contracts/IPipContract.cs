@@ -11,6 +11,6 @@ namespace Contracts.Contracts
     public interface IPipContract
     {
         [OperationContract]
-        DomainAttribute RequestCurrentTimeAttribute();
+        DomainAttribute RequestEnvironmentAttribute(string AttrType);
     }
 }

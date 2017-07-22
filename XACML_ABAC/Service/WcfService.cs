@@ -17,7 +17,7 @@ namespace Service
         public string Test()
         {
          
-            return "Test";
+            return "Student remaining courses...";
         }
     }
 }

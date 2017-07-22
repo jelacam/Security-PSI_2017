@@ -31,5 +31,19 @@ namespace PolicyEnforcementPoint
                 return DecisionType.Indeterminate;
             }
         }
+
+        //public List<DomainAttribute> RequestForEnvironmentAttribute(List<string> AttributeTypes)
+        //{
+        //    try
+        //    {
+        //        return factory.RequestForEnvironmentAttribute(AttributeTypes);
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine("Context proxy error: Message: {0}", e.Message);
+        //        return null;
+        //    }
+        //}
     }
 }

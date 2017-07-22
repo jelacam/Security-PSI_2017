@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Contracts;
+using System;
+using System.ServiceModel;
 
 namespace PolicyDecisionPoint.XAML_Common
 {
@@ -37,7 +39,8 @@ namespace PolicyDecisionPoint.XAML_Common
                 TargetResult TargetValue = TargetEvaluate.CheckTarget(Target, request);
 
                 ConditionResult ConditionValue = ConditionEvaluate.CheckCondition(Condition, request);
-
+                
+               
                 Console.WriteLine("Target evaluation: {0}", TargetValue.ToString());
                 Console.WriteLine("Condition evaluation: {0}", ConditionValue.ToString());
 

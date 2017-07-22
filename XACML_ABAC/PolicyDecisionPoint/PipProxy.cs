@@ -18,11 +18,11 @@ namespace PolicyDecisionPoint
         {
             factory = CreateChannel();
         }
-        public DomainAttribute RequestCurrentTimeAttribute()
+        public DomainAttribute RequestEnvironmentAttribute(string AttrType)
         {
             try
             {
-                return factory.RequestCurrentTimeAttribute();
+                return factory.RequestEnvironmentAttribute(AttrType);
             }
             catch (Exception e)
             {

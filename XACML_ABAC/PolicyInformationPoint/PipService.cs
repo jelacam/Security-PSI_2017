@@ -10,7 +10,7 @@ namespace PolicyInformationPoint
 {
     public class PipService : IPipContract
     {
-        public DomainAttribute RequestCurrentTimeAttribute()
+        public DomainAttribute RequestEnvironmentAttribute(string AttrType)
         {
             DomainAttribute CurrentTimeAttribute = new DomainAttribute();
             CurrentTimeAttribute.AttributeId = "urn:oasis:names:tc:xacml:1.0:environment:current-time";
