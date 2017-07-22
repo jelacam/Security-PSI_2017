@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace PolicyDecisionPoint.XAML_Common
 {
@@ -41,16 +42,40 @@ namespace PolicyDecisionPoint.XAML_Common
                                 // Evaluacija Match elementa prema string-equal funkciji
                                 if (Match.MatchId.Equals("urn:oasis:names:tc:xacml:1.0:function:string-equal"))
                                 {
-                                    CheckResult decision = StringEqual.CheckIfMatch(AttributeValue, AttributeDesignator, request);
 
-                                    if (decision.Equals(CheckResult.False))
+                                    List<AttributeType> Attributes = AttributeDesignatorManager.RequestBagOfValues(AttributeDesignator, request);
+
+                                    if (Attributes.Count == 0)
+                                    {
+                                        // bag of values je prazan, provera atributa MustBePresented
+                                        if (AttributeDesignator.MustBePresent)
+                                        {
+                                            // TODO zahteva dobavljanje atributa od PIP
+                                            numberOfIndeterminateMatch++;
+                                        }
+
+                                    }
+                                    string attributeValue = string.Empty;
+
+                                    foreach(AttributeType attr in Attributes)
+                                    {
+                                        AttributeValueType[] attrValues = attr.AttributeValue;
+                                        foreach(AttributeValueType attrValue in attrValues)
+                                        {
+                                            XmlNode node = attrValue.Any[0];
+                                            attributeValue = node.Value;
+                                        }
+                                        
+                                    }
+
+
+                                    bool decision = StringEqual.CheckIfMatch(attributeValue, AttributeValue.Any[0].Value);
+
+                                    if (!decision)
                                     {
                                         numberOfFalseMatch++;
                                     }
-                                    else if (decision.Equals(CheckResult.Indeterminate))
-                                    {
-                                        numberOfIndeterminateMatch++;
-                                    }
+                                    
                                 }
                             }
 
