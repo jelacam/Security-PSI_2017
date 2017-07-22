@@ -85,11 +85,7 @@ namespace PolicyEnforcementPoint
                 return false;
             }
 
-            //ResponseType response = new ResponseType();
-            //ResultType result = new ResultType();
-            //result.Decision = decision;
-            //response.Result = new ResultType[1];
-            //response.Result[0] = result;
+            
 
 
 

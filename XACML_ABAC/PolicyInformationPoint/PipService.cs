@@ -12,6 +12,7 @@ namespace PolicyInformationPoint
     {
         public DomainAttribute RequestEnvironmentAttribute(string AttrType)
         {
+            Console.WriteLine("PIP - Request for environment attribute - current-time");
             DomainAttribute CurrentTimeAttribute = new DomainAttribute();
             CurrentTimeAttribute.AttributeId = "urn:oasis:names:tc:xacml:1.0:environment:current-time";
             CurrentTimeAttribute.Category = "urn:oasis:names:tc:xacml:3.0:attribute-category:environment";

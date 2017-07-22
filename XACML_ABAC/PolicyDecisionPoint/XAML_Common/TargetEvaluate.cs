@@ -34,49 +34,58 @@ namespace PolicyDecisionPoint.XAML_Common
                             int numberOfIndeterminateMatch = 0;
 
                             MatchType[] Matches = AllOf.Match;
-                            foreach (MatchType Match in Matches)
+                            try
                             {
-                                AttributeDesignatorType AttributeDesignator = Match.Item as AttributeDesignatorType;
-                                AttributeValueType AttributeValue = Match.AttributeValue;
-
-                                // Evaluacija Match elementa prema string-equal funkciji
-                                if (Match.MatchId.Equals("urn:oasis:names:tc:xacml:1.0:function:string-equal"))
+                                foreach (MatchType Match in Matches)
                                 {
+                                    AttributeDesignatorType AttributeDesignator = Match.Item as AttributeDesignatorType;
+                                    AttributeValueType AttributeValue = Match.AttributeValue;
 
-                                    List<AttributeType> Attributes = AttributeDesignatorManager.RequestBagOfValues(AttributeDesignator, request);
-
-                                    if (Attributes.Count == 0)
+                                    // Evaluacija Match elementa prema string-equal funkciji
+                                    if (Match.MatchId.Equals("urn:oasis:names:tc:xacml:1.0:function:string-equal"))
                                     {
-                                        // bag of values je prazan, provera atributa MustBePresented
-                                        if (AttributeDesignator.MustBePresent)
+
+                                        List<AttributeType> Attributes = AttributeDesignatorManager.RequestBagOfValues(AttributeDesignator, request);
+
+                                        if (Attributes.Count == 0)
                                         {
-                                            // TODO zahteva dobavljanje atributa od PIP
-                                            numberOfIndeterminateMatch++;
+                                            // bag of values je prazan, provera atributa MustBePresented
+                                            if (AttributeDesignator.MustBePresent)
+                                            {
+                                                // TODO zahteva dobavljanje atributa od PIP
+                                                numberOfIndeterminateMatch++;
+                                            }
+                                            continue;
+
+                                        }
+                                        string attributeValue = string.Empty;
+
+                                        foreach (AttributeType attr in Attributes)
+                                        {
+                                            AttributeValueType[] attrValues = attr.AttributeValue;
+                                            foreach (AttributeValueType attrValue in attrValues)
+                                            {
+                                                XmlNode node = attrValue.Any[0];
+                                                attributeValue = node.Value;
+                                            }
+
+                                        }
+
+
+                                        bool decision = StringEqual.CheckIfMatch(AttributeValue.Any[0].Value, attributeValue);
+
+                                        if (!decision)
+                                        {
+                                            numberOfFalseMatch++;
                                         }
 
                                     }
-                                    string attributeValue = string.Empty;
-
-                                    foreach(AttributeType attr in Attributes)
-                                    {
-                                        AttributeValueType[] attrValues = attr.AttributeValue;
-                                        foreach(AttributeValueType attrValue in attrValues)
-                                        {
-                                            XmlNode node = attrValue.Any[0];
-                                            attributeValue = node.Value;
-                                        }
-                                        
-                                    }
-
-
-                                    bool decision = StringEqual.CheckIfMatch(attributeValue, AttributeValue.Any[0].Value);
-
-                                    if (!decision)
-                                    {
-                                        numberOfFalseMatch++;
-                                    }
-                                    
                                 }
+                            }
+                            catch (Exception )
+                            {
+                                numberOfIndeterminateMatch++;
+                                
                             }
 
                             /// AllOf evaluacija

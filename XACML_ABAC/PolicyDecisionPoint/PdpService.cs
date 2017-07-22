@@ -12,7 +12,7 @@ namespace PolicyDecisionPoint
 {
     public static class PdpService
     {
-        public static DecisionType Evaluate(RequestType request)
+        public static ResponseType Evaluate(RequestType request)
         {
             /// deserijalizacija xml dokumenta koji specificira autorizacionu politiku
             XmlSerializer serializer = new XmlSerializer(typeof(PolicyType));
@@ -37,9 +37,15 @@ namespace PolicyDecisionPoint
             DecisionType decision = firstAppl.firstApplicableEffectRuleCombiningAlgorithm(rules, request);
 
             Console.WriteLine("\nAccess decision: {0}", decision.ToString());
-            
 
-            return decision;
+            ResponseType XacmlResponse = new ResponseType();
+
+            ResultType result = new ResultType();
+            result.Decision = decision;
+            XacmlResponse.Result = new ResultType[1];
+            XacmlResponse.Result[0] = result;
+
+            return XacmlResponse;
         }
     }
 }
