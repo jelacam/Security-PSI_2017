@@ -13,7 +13,10 @@ namespace Contracts
     public interface IContract
     {
         [OperationContract(Action = "view_remaining courses")]
-        string Test();
+        string AccessPermit();
+
+        [OperationContract(Action = "edit_remaining courses")]
+        string AccessDenied();
 
     }
 }

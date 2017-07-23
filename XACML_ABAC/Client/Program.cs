@@ -21,7 +21,14 @@ namespace Client
 
             using (ClientProxy proxy = new ClientProxy(binding, new EndpointAddress(new Uri(address))))
             {
-                string ret = proxy.Test();
+               
+
+                Console.WriteLine("\nRequest for editing student remaining courses.");
+                string ret = proxy.AccessDenied();
+                Console.WriteLine(ret);
+
+                Console.WriteLine("Request for student remaining courses.");
+                ret = proxy.AccessPermit();
                 Console.WriteLine(ret);
             }
 

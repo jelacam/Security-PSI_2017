@@ -18,6 +18,12 @@ namespace PolicyAdministrationPoint
             binding.OpenTimeout = new TimeSpan(0, 10, 0);
             binding.ReceiveTimeout = new TimeSpan(0, 10, 0);
             binding.SendTimeout = new TimeSpan(0, 10, 0);
+
+            binding.MaxBufferPoolSize = 20000000;
+            binding.MaxBufferSize = 20000000;
+            binding.MaxConnections = 20000000;
+            binding.MaxReceivedMessageSize = 20000000;
+
             string address = "net.tcp://localhost:6000/PapService";
 
             ServiceHost host = new ServiceHost(typeof(PapService));

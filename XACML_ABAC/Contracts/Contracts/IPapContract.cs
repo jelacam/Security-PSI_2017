@@ -7,10 +7,10 @@ using System.ServiceModel;
 
 namespace Contracts.Contracts
 {
-    [ServiceContract]    
+    [ServiceContract, XmlSerializerFormat]    
     public interface IPapContract
     {
-        [OperationContract]
+        [OperationContract, XmlSerializerFormat]
         PolicyType LoadPolicy();
     }
 }

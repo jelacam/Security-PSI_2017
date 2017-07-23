@@ -60,7 +60,7 @@ namespace PolicyDecisionPoint.XAML_Common
 
                 if (!exists)
                 {
-                    // exist je false - nema trazenog atributa u requestu - PDP zahteva dobavljanje atributa od PIP
+                    // ovo se nece desiti
                     Result = ConditionResult.Indeterminate;
                 }
                 else if (TimeConditionResult)

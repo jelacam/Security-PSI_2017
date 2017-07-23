@@ -1,36 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Contracts;
+using System;
 using System.ServiceModel;
-using System.ServiceModel.Security;
-using Contracts;
-using System.ServiceModel.Channels;
 
 namespace Client
 {
     public class ClientProxy : ChannelFactory<IContract>, IContract, IDisposable
     {
-        IContract factory;
+        private IContract factory;
 
         public ClientProxy(NetTcpBinding binding, EndpointAddress address)
-            : base (binding, address)
+            : base(binding, address)
         {
             factory = this.CreateChannel();
         }
-        public string Test()
+
+        public string AccessDenied()
         {
             try
-            { 
-                MessageHeader header = MessageHeader.CreateHeader("Action", string.Empty, "Read");
-                
-                return factory.Test();
+            {
+                return factory.AccessDenied();
             }
             catch (Exception e)
             {
+                Console.WriteLine("Proxy error. Message: {0}", e.Message);
+                return null;
+            }
+        }
 
-                Console.WriteLine("Proxy error while trying to Test. Message: {0}", e.Message);
+        public string AccessPermit()
+        {
+            try
+            {
+                return factory.AccessPermit();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Proxy error. Message: {0}", e.Message);
                 return null;
             }
         }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+    PolicyId="http://axiomatics.com/alfa/identifier/rule1.main"
+    RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+    Version="1.0">
+    <Description>Global policy</Description>
+    <PolicyDefaults>
+        <XPathVersion>http://www.w3.org/TR/1999/REC-xpath-19991116</XPathVersion>
+    </PolicyDefaults>
+    <Target />
+    <Rule  Effect="Permit" RuleId="http://axiomatics.com/alfa/identifier/rule1.remaining.courses">
+        <Description>Student can view remaining courses.</Description>
+        <Target>
+            <AnyOf>
+                <AllOf>
+                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">student</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:3.0:subject-category:access-subject"
+                            MustBePresent="false"/>
+                    </Match>
+                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">view</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action"
+                            MustBePresent="false"/>
+                    </Match>
+                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">remaining courses</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+                            MustBePresent="false" />
+                    </Match>
+					<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">Novi Sad</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-location"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:3.0:subject-category:access-subject"
+                            MustBePresent="true" />
+                    </Match>
+                </AllOf>
+			</AnyOf>
+        </Target>
+		
+		<Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:time-in-range" >
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only" >
+                    <AttributeDesignator 
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-time"
+                        DataType="http://www.w3.org/2001/XMLSchema#time"
+                        Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"
+                        MustBePresent="false"
+                    />
+                </Apply>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only" >
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-bag" >
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#time">09:00:00+02:00</AttributeValue>
+                    </Apply>
+                </Apply>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only" >
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-bag" >
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#time">22:00:00+02:00</AttributeValue>
+                    </Apply>
+                </Apply>
+            </Apply>
+        </Condition>
+		
+    </Rule>
+</Policy>

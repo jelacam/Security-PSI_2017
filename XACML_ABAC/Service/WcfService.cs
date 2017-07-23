@@ -13,8 +13,13 @@ namespace Service
 {
     public class WcfService : IContract
     {
-        //[ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Read", Resource ="Book")]
-        public string Test()
+        public string AccessDenied()
+        {
+            return "Edit student remaining courses...";
+        }
+
+      
+        public string AccessPermit()
         {
          
             return "Student remaining courses...";

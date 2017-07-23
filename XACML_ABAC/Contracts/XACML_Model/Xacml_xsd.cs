@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 // 
@@ -16,6 +17,12 @@ using System.Xml.Serialization;
 
 
 /// <remarks/>
+/// 
+
+[DataContract]
+[KnownType(typeof(RequestDefaultsType))]
+[KnownType(typeof(AttributesType[]))]
+[KnownType(typeof(AttributesReferenceType[][]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -33,8 +40,10 @@ public partial class RequestType {
     private bool returnPolicyIdListField;
     
     private bool combinedDecisionField;
-    
+
+
     /// <remarks/>
+    [DataMember]
     public RequestDefaultsType RequestDefaults {
         get {
             return this.requestDefaultsField;
@@ -43,8 +52,9 @@ public partial class RequestType {
             this.requestDefaultsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Attributes")]
     public AttributesType[] Attributes {
         get {
@@ -54,8 +64,9 @@ public partial class RequestType {
             this.attributesField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlArrayItemAttribute("RequestReference", IsNullable=false)]
     [System.Xml.Serialization.XmlArrayItemAttribute("AttributesReference", IsNullable=false, NestingLevel=1)]
     public AttributesReferenceType[][] MultiRequests {
@@ -66,8 +77,9 @@ public partial class RequestType {
             this.multiRequestsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public bool ReturnPolicyIdList {
         get {
@@ -77,8 +89,9 @@ public partial class RequestType {
             this.returnPolicyIdListField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public bool CombinedDecision {
         get {
@@ -91,6 +104,7 @@ public partial class RequestType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -100,8 +114,9 @@ public partial class RequestType {
 public partial class RequestDefaultsType {
     
     private string itemField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("XPathVersion", DataType="anyURI")]
     public string Item {
         get {
@@ -114,6 +129,7 @@ public partial class RequestDefaultsType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(ApplyType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(FunctionType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(AttributeValueType))]
@@ -130,6 +146,8 @@ public abstract partial class ExpressionType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributeType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -145,8 +163,9 @@ public partial class AttributesType {
     private string categoryField;
     
     private string idField;
-    
+
     /// <remarks/>
+    [DataMember]
     public System.Xml.XmlNode Content {
         get {
             return this.contentField;
@@ -155,8 +174,9 @@ public partial class AttributesType {
             this.contentField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Attribute")]
     public AttributeType[] Attribute {
         get {
@@ -166,8 +186,9 @@ public partial class AttributesType {
             this.attributeField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string Category {
         get {
@@ -177,8 +198,9 @@ public partial class AttributesType {
             this.categoryField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://www.w3.org/XML/1998/namespace")]
     public string id {
         get {
@@ -191,6 +213,8 @@ public partial class AttributesType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributeValueType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -206,8 +230,9 @@ public partial class AttributeType {
     private string issuerField;
     
     private bool includeInResultField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("AttributeValue")]
     public AttributeValueType[] AttributeValue {
         get {
@@ -217,8 +242,9 @@ public partial class AttributeType {
             this.attributeValueField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string AttributeId {
         get {
@@ -228,8 +254,9 @@ public partial class AttributeType {
             this.attributeIdField = value;
         }
     }
-    
-    /// <remarks/>
+
+    /// <remarks
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string Issuer {
         get {
@@ -239,8 +266,9 @@ public partial class AttributeType {
             this.issuerField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public bool IncludeInResult {
         get {
@@ -253,6 +281,7 @@ public partial class AttributeType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(AttributeAssignmentType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
@@ -267,8 +296,9 @@ public partial class AttributeValueType : ExpressionType {
     private string dataTypeField;
     
     private System.Xml.XmlAttribute[] anyAttrField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlTextAttribute()]
     [System.Xml.Serialization.XmlAnyElementAttribute()]
     public System.Xml.XmlNode[] Any {
@@ -279,8 +309,9 @@ public partial class AttributeValueType : ExpressionType {
             this.anyField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string DataType {
         get {
@@ -290,8 +321,9 @@ public partial class AttributeValueType : ExpressionType {
             this.dataTypeField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAnyAttributeAttribute()]
     public System.Xml.XmlAttribute[] AnyAttr {
         get {
@@ -304,6 +336,7 @@ public partial class AttributeValueType : ExpressionType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -313,8 +346,9 @@ public partial class AttributeValueType : ExpressionType {
 public partial class AttributesReferenceType {
     
     private string referenceIdField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="IDREF")]
     public string ReferenceId {
         get {
@@ -327,6 +361,8 @@ public partial class AttributesReferenceType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(ResultType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -336,8 +372,9 @@ public partial class AttributesReferenceType {
 public partial class ResponseType {
     
     private ResultType[] resultField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Result")]
     public ResultType[] Result {
         get {
@@ -350,6 +387,12 @@ public partial class ResponseType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(StatusType))]
+[KnownType(typeof(ObligationType[]))]
+[KnownType(typeof(AdviceType[]))]
+[KnownType(typeof(AttributesType[]))]
+[KnownType(typeof(PolicyIdentifierListType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -369,8 +412,9 @@ public partial class ResultType {
     private AttributesType[] attributesField;
     
     private PolicyIdentifierListType policyIdentifierListField;
-    
+
     /// <remarks/>
+    [DataMember]
     public DecisionType Decision {
         get {
             return this.decisionField;
@@ -379,8 +423,9 @@ public partial class ResultType {
             this.decisionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public StatusType Status {
         get {
             return this.statusField;
@@ -389,8 +434,9 @@ public partial class ResultType {
             this.statusField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlArrayItemAttribute("Obligation", IsNullable=false)]
     public ObligationType[] Obligations {
         get {
@@ -400,8 +446,9 @@ public partial class ResultType {
             this.obligationsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlArrayItemAttribute("Advice", IsNullable=false)]
     public AdviceType[] AssociatedAdvice {
         get {
@@ -411,8 +458,9 @@ public partial class ResultType {
             this.associatedAdviceField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Attributes")]
     public AttributesType[] Attributes {
         get {
@@ -422,8 +470,9 @@ public partial class ResultType {
             this.attributesField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public PolicyIdentifierListType PolicyIdentifierList {
         get {
             return this.policyIdentifierListField;
@@ -455,6 +504,9 @@ public enum DecisionType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(StatusCodeType))]
+[KnownType(typeof(StatusDetailType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -468,8 +520,9 @@ public partial class StatusType {
     private string statusMessageField;
     
     private StatusDetailType statusDetailField;
-    
+
     /// <remarks/>
+    [DataMember]
     public StatusCodeType StatusCode {
         get {
             return this.statusCodeField;
@@ -478,8 +531,9 @@ public partial class StatusType {
             this.statusCodeField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public string StatusMessage {
         get {
             return this.statusMessageField;
@@ -488,8 +542,9 @@ public partial class StatusType {
             this.statusMessageField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public StatusDetailType StatusDetail {
         get {
             return this.statusDetailField;
@@ -501,6 +556,8 @@ public partial class StatusType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(StatusCodeType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -512,8 +569,9 @@ public partial class StatusCodeType {
     private StatusCodeType statusCodeField;
     
     private string valueField;
-    
+
     /// <remarks/>
+    [DataMember]
     public StatusCodeType StatusCode {
         get {
             return this.statusCodeField;
@@ -522,8 +580,9 @@ public partial class StatusCodeType {
             this.statusCodeField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string Value {
         get {
@@ -536,6 +595,7 @@ public partial class StatusCodeType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -545,8 +605,9 @@ public partial class StatusCodeType {
 public partial class StatusDetailType {
     
     private System.Xml.XmlElement[] anyField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAnyElementAttribute()]
     public System.Xml.XmlElement[] Any {
         get {
@@ -559,6 +620,8 @@ public partial class StatusDetailType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributeAssignmentType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -570,8 +633,9 @@ public partial class ObligationType {
     private AttributeAssignmentType[] attributeAssignmentField;
     
     private string obligationIdField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("AttributeAssignment")]
     public AttributeAssignmentType[] AttributeAssignment {
         get {
@@ -581,8 +645,9 @@ public partial class ObligationType {
             this.attributeAssignmentField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string ObligationId {
         get {
@@ -595,6 +660,7 @@ public partial class ObligationType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -608,8 +674,9 @@ public partial class AttributeAssignmentType : AttributeValueType {
     private string categoryField;
     
     private string issuerField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string AttributeId {
         get {
@@ -619,8 +686,9 @@ public partial class AttributeAssignmentType : AttributeValueType {
             this.attributeIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string Category {
         get {
@@ -630,8 +698,9 @@ public partial class AttributeAssignmentType : AttributeValueType {
             this.categoryField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string Issuer {
         get {
@@ -644,6 +713,8 @@ public partial class AttributeAssignmentType : AttributeValueType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributeAssignmentType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -655,8 +726,9 @@ public partial class AdviceType {
     private AttributeAssignmentType[] attributeAssignmentField;
     
     private string adviceIdField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("AttributeAssignment")]
     public AttributeAssignmentType[] AttributeAssignment {
         get {
@@ -666,8 +738,9 @@ public partial class AdviceType {
             this.attributeAssignmentField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string AdviceId {
         get {
@@ -680,6 +753,8 @@ public partial class AdviceType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(IdReferenceType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -691,8 +766,9 @@ public partial class PolicyIdentifierListType {
     private IdReferenceType[] itemsField;
     
     private ItemsChoiceType[] itemsElementNameField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("PolicyIdReference", typeof(IdReferenceType))]
     [System.Xml.Serialization.XmlElementAttribute("PolicySetIdReference", typeof(IdReferenceType))]
     [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
@@ -704,8 +780,9 @@ public partial class PolicyIdentifierListType {
             this.itemsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
     [System.Xml.Serialization.XmlIgnoreAttribute()]
     public ItemsChoiceType[] ItemsElementName {
@@ -719,6 +796,7 @@ public partial class PolicyIdentifierListType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -734,8 +812,9 @@ public partial class IdReferenceType {
     private string latestVersionField;
     
     private string valueField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string Version {
         get {
@@ -745,8 +824,9 @@ public partial class IdReferenceType {
             this.versionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string EarliestVersion {
         get {
@@ -756,8 +836,9 @@ public partial class IdReferenceType {
             this.earliestVersionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string LatestVersion {
         get {
@@ -767,8 +848,9 @@ public partial class IdReferenceType {
             this.latestVersionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlTextAttribute(DataType="anyURI")]
     public string Value {
         get {
@@ -794,6 +876,8 @@ public enum ItemsChoiceType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributeValueType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -811,8 +895,9 @@ public partial class MissingAttributeDetailType {
     private string dataTypeField;
     
     private string issuerField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("AttributeValue")]
     public AttributeValueType[] AttributeValue {
         get {
@@ -822,8 +907,9 @@ public partial class MissingAttributeDetailType {
             this.attributeValueField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string Category {
         get {
@@ -833,8 +919,9 @@ public partial class MissingAttributeDetailType {
             this.categoryField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string AttributeId {
         get {
@@ -844,8 +931,9 @@ public partial class MissingAttributeDetailType {
             this.attributeIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string DataType {
         get {
@@ -855,8 +943,9 @@ public partial class MissingAttributeDetailType {
             this.dataTypeField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string Issuer {
         get {
@@ -869,6 +958,8 @@ public partial class MissingAttributeDetailType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributesReferenceType[][]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -878,8 +969,9 @@ public partial class MissingAttributeDetailType {
 public partial class MultiRequestsType {
     
     private AttributesReferenceType[][] requestReferenceField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlArrayItemAttribute("AttributesReference", typeof(AttributesReferenceType), IsNullable=false)]
     public AttributesReferenceType[][] RequestReference {
         get {
@@ -892,6 +984,8 @@ public partial class MultiRequestsType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributesReferenceType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -901,8 +995,9 @@ public partial class MultiRequestsType {
 public partial class RequestReferenceType {
     
     private AttributesReferenceType[] attributesReferenceField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("AttributesReference")]
     public AttributesReferenceType[] AttributesReference {
         get {
@@ -915,6 +1010,8 @@ public partial class RequestReferenceType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(ObligationType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -924,8 +1021,9 @@ public partial class RequestReferenceType {
 public partial class ObligationsType {
     
     private ObligationType[] obligationField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Obligation")]
     public ObligationType[] Obligation {
         get {
@@ -938,6 +1036,8 @@ public partial class ObligationsType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AdviceType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -947,8 +1047,9 @@ public partial class ObligationsType {
 public partial class AssociatedAdviceType {
     
     private AdviceType[] adviceField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Advice")]
     public AdviceType[] Advice {
         get {
@@ -961,6 +1062,8 @@ public partial class AssociatedAdviceType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(ObligationExpressionType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -970,8 +1073,9 @@ public partial class AssociatedAdviceType {
 public partial class ObligationExpressionsType {
     
     private ObligationExpressionType[] obligationExpressionField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("ObligationExpression")]
     public ObligationExpressionType[] ObligationExpression {
         get {
@@ -984,6 +1088,8 @@ public partial class ObligationExpressionsType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributeAssignmentExpressionType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -997,8 +1103,9 @@ public partial class ObligationExpressionType {
     private string obligationIdField;
     
     private EffectType fulfillOnField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("AttributeAssignmentExpression")]
     public AttributeAssignmentExpressionType[] AttributeAssignmentExpression {
         get {
@@ -1008,8 +1115,9 @@ public partial class ObligationExpressionType {
             this.attributeAssignmentExpressionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string ObligationId {
         get {
@@ -1019,8 +1127,9 @@ public partial class ObligationExpressionType {
             this.obligationIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public EffectType FulfillOn {
         get {
@@ -1033,6 +1142,8 @@ public partial class ObligationExpressionType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(ExpressionType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1048,8 +1159,9 @@ public partial class AttributeAssignmentExpressionType {
     private string categoryField;
     
     private string issuerField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Apply", typeof(ApplyType))]
     [System.Xml.Serialization.XmlElementAttribute("AttributeDesignator", typeof(AttributeDesignatorType))]
     [System.Xml.Serialization.XmlElementAttribute("AttributeSelector", typeof(AttributeSelectorType))]
@@ -1064,8 +1176,9 @@ public partial class AttributeAssignmentExpressionType {
             this.itemField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string AttributeId {
         get {
@@ -1075,8 +1188,9 @@ public partial class AttributeAssignmentExpressionType {
             this.attributeIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string Category {
         get {
@@ -1086,8 +1200,9 @@ public partial class AttributeAssignmentExpressionType {
             this.categoryField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string Issuer {
         get {
@@ -1100,6 +1215,8 @@ public partial class AttributeAssignmentExpressionType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(ExpressionType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1113,8 +1230,9 @@ public partial class ApplyType : ExpressionType {
     private ExpressionType[] itemsField;
     
     private string functionIdField;
-    
+
     /// <remarks/>
+    [DataMember]
     public string Description {
         get {
             return this.descriptionField;
@@ -1123,8 +1241,9 @@ public partial class ApplyType : ExpressionType {
             this.descriptionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Apply", typeof(ApplyType))]
     [System.Xml.Serialization.XmlElementAttribute("AttributeDesignator", typeof(AttributeDesignatorType))]
     [System.Xml.Serialization.XmlElementAttribute("AttributeSelector", typeof(AttributeSelectorType))]
@@ -1139,8 +1258,9 @@ public partial class ApplyType : ExpressionType {
             this.itemsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string FunctionId {
         get {
@@ -1153,6 +1273,7 @@ public partial class ApplyType : ExpressionType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1170,8 +1291,9 @@ public partial class AttributeDesignatorType : ExpressionType {
     private string issuerField;
     
     private bool mustBePresentField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string Category {
         get {
@@ -1181,8 +1303,9 @@ public partial class AttributeDesignatorType : ExpressionType {
             this.categoryField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string AttributeId {
         get {
@@ -1192,8 +1315,9 @@ public partial class AttributeDesignatorType : ExpressionType {
             this.attributeIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string DataType {
         get {
@@ -1203,8 +1327,9 @@ public partial class AttributeDesignatorType : ExpressionType {
             this.dataTypeField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string Issuer {
         get {
@@ -1214,8 +1339,9 @@ public partial class AttributeDesignatorType : ExpressionType {
             this.issuerField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public bool MustBePresent {
         get {
@@ -1228,6 +1354,7 @@ public partial class AttributeDesignatorType : ExpressionType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1245,8 +1372,9 @@ public partial class AttributeSelectorType : ExpressionType {
     private string dataTypeField;
     
     private bool mustBePresentField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string Category {
         get {
@@ -1256,8 +1384,9 @@ public partial class AttributeSelectorType : ExpressionType {
             this.categoryField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string ContextSelectorId {
         get {
@@ -1267,8 +1396,9 @@ public partial class AttributeSelectorType : ExpressionType {
             this.contextSelectorIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string Path {
         get {
@@ -1278,8 +1408,9 @@ public partial class AttributeSelectorType : ExpressionType {
             this.pathField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string DataType {
         get {
@@ -1289,8 +1420,9 @@ public partial class AttributeSelectorType : ExpressionType {
             this.dataTypeField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public bool MustBePresent {
         get {
@@ -1303,6 +1435,7 @@ public partial class AttributeSelectorType : ExpressionType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1312,8 +1445,9 @@ public partial class AttributeSelectorType : ExpressionType {
 public partial class FunctionType : ExpressionType {
     
     private string functionIdField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string FunctionId {
         get {
@@ -1326,6 +1460,7 @@ public partial class FunctionType : ExpressionType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1335,8 +1470,9 @@ public partial class FunctionType : ExpressionType {
 public partial class VariableReferenceType : ExpressionType {
     
     private string variableIdField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string VariableId {
         get {
@@ -1362,6 +1498,8 @@ public enum EffectType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AdviceExpressionType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1371,8 +1509,9 @@ public enum EffectType {
 public partial class AdviceExpressionsType {
     
     private AdviceExpressionType[] adviceExpressionField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("AdviceExpression")]
     public AdviceExpressionType[] AdviceExpression {
         get {
@@ -1385,6 +1524,8 @@ public partial class AdviceExpressionsType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributeAssignmentExpressionType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1398,8 +1539,9 @@ public partial class AdviceExpressionType {
     private string adviceIdField;
     
     private EffectType appliesToField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("AttributeAssignmentExpression")]
     public AttributeAssignmentExpressionType[] AttributeAssignmentExpression {
         get {
@@ -1409,8 +1551,9 @@ public partial class AdviceExpressionType {
             this.attributeAssignmentExpressionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string AdviceId {
         get {
@@ -1420,8 +1563,9 @@ public partial class AdviceExpressionType {
             this.adviceIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public EffectType AppliesTo {
         get {
@@ -1434,6 +1578,12 @@ public partial class AdviceExpressionType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(PolicyIssuerType))]
+[KnownType(typeof(DefaultsType))]
+[KnownType(typeof(TargetType))]
+[KnownType(typeof(ObligationExpressionType[]))]
+[KnownType(typeof(AdviceExpressionType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1465,8 +1615,9 @@ public partial class PolicySetType {
     private string policyCombiningAlgIdField;
     
     private string maxDelegationDepthField;
-    
+
     /// <remarks/>
+    [DataMember]
     public string Description {
         get {
             return this.descriptionField;
@@ -1475,8 +1626,9 @@ public partial class PolicySetType {
             this.descriptionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public PolicyIssuerType PolicyIssuer {
         get {
             return this.policyIssuerField;
@@ -1485,8 +1637,9 @@ public partial class PolicySetType {
             this.policyIssuerField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public DefaultsType PolicySetDefaults {
         get {
             return this.policySetDefaultsField;
@@ -1495,8 +1648,9 @@ public partial class PolicySetType {
             this.policySetDefaultsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public TargetType Target {
         get {
             return this.targetField;
@@ -1505,8 +1659,9 @@ public partial class PolicySetType {
             this.targetField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("CombinerParameters", typeof(CombinerParametersType))]
     [System.Xml.Serialization.XmlElementAttribute("Policy", typeof(PolicyType))]
     [System.Xml.Serialization.XmlElementAttribute("PolicyCombinerParameters", typeof(PolicyCombinerParametersType))]
@@ -1523,8 +1678,9 @@ public partial class PolicySetType {
             this.itemsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
     [System.Xml.Serialization.XmlIgnoreAttribute()]
     public ItemsChoiceType1[] ItemsElementName {
@@ -1535,8 +1691,9 @@ public partial class PolicySetType {
             this.itemsElementNameField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlArrayItemAttribute("ObligationExpression", IsNullable=false)]
     public ObligationExpressionType[] ObligationExpressions {
         get {
@@ -1546,8 +1703,9 @@ public partial class PolicySetType {
             this.obligationExpressionsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlArrayItemAttribute("AdviceExpression", IsNullable=false)]
     public AdviceExpressionType[] AdviceExpressions {
         get {
@@ -1557,8 +1715,9 @@ public partial class PolicySetType {
             this.adviceExpressionsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string PolicySetId {
         get {
@@ -1568,8 +1727,9 @@ public partial class PolicySetType {
             this.policySetIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string Version {
         get {
@@ -1579,8 +1739,9 @@ public partial class PolicySetType {
             this.versionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string PolicyCombiningAlgId {
         get {
@@ -1590,8 +1751,9 @@ public partial class PolicySetType {
             this.policyCombiningAlgIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
     public string MaxDelegationDepth {
         get {
@@ -1604,6 +1766,8 @@ public partial class PolicySetType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributeType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1615,8 +1779,9 @@ public partial class PolicyIssuerType {
     private System.Xml.XmlNode contentField;
     
     private AttributeType[] attributeField;
-    
+
     /// <remarks/>
+    [DataMember]
     public System.Xml.XmlNode Content {
         get {
             return this.contentField;
@@ -1625,8 +1790,9 @@ public partial class PolicyIssuerType {
             this.contentField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Attribute")]
     public AttributeType[] Attribute {
         get {
@@ -1639,6 +1805,7 @@ public partial class PolicyIssuerType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1648,8 +1815,9 @@ public partial class PolicyIssuerType {
 public partial class DefaultsType {
     
     private string itemField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("XPathVersion", DataType="anyURI")]
     public string Item {
         get {
@@ -1662,6 +1830,8 @@ public partial class DefaultsType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AnyOfType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1671,8 +1841,9 @@ public partial class DefaultsType {
 public partial class TargetType {
     
     private AnyOfType[] anyOfField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("AnyOf")]
     public AnyOfType[] AnyOf {
         get {
@@ -1685,6 +1856,8 @@ public partial class TargetType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AllOfType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1694,8 +1867,9 @@ public partial class TargetType {
 public partial class AnyOfType {
     
     private AllOfType[] allOfField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("AllOf")]
     public AllOfType[] AllOf {
         get {
@@ -1708,6 +1882,8 @@ public partial class AnyOfType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(MatchType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1717,8 +1893,9 @@ public partial class AnyOfType {
 public partial class AllOfType {
     
     private MatchType[] matchField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Match")]
     public MatchType[] Match {
         get {
@@ -1731,6 +1908,9 @@ public partial class AllOfType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributeValueType))]
+[KnownType(typeof(ExpressionType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1744,8 +1924,9 @@ public partial class MatchType {
     private ExpressionType itemField;
     
     private string matchIdField;
-    
+
     /// <remarks/>
+    [DataMember]
     public AttributeValueType AttributeValue {
         get {
             return this.attributeValueField;
@@ -1754,8 +1935,9 @@ public partial class MatchType {
             this.attributeValueField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("AttributeDesignator", typeof(AttributeDesignatorType))]
     [System.Xml.Serialization.XmlElementAttribute("AttributeSelector", typeof(AttributeSelectorType))]
     public ExpressionType Item {
@@ -1766,8 +1948,9 @@ public partial class MatchType {
             this.itemField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string MatchId {
         get {
@@ -1780,6 +1963,8 @@ public partial class MatchType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(CombinerParameterType[]))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(PolicySetCombinerParametersType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(PolicyCombinerParametersType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(RuleCombinerParametersType))]
@@ -1792,8 +1977,9 @@ public partial class MatchType {
 public partial class CombinerParametersType {
     
     private CombinerParameterType[] combinerParameterField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("CombinerParameter")]
     public CombinerParameterType[] CombinerParameter {
         get {
@@ -1806,6 +1992,8 @@ public partial class CombinerParametersType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(AttributeValueType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1817,8 +2005,9 @@ public partial class CombinerParameterType {
     private AttributeValueType attributeValueField;
     
     private string parameterNameField;
-    
+
     /// <remarks/>
+    [DataMember]
     public AttributeValueType AttributeValue {
         get {
             return this.attributeValueField;
@@ -1827,8 +2016,9 @@ public partial class CombinerParameterType {
             this.attributeValueField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string ParameterName {
         get {
@@ -1841,6 +2031,13 @@ public partial class CombinerParameterType {
 }
 
 /// <remarks/>
+///
+[DataContract]
+[KnownType(typeof(PolicyIssuerType))]
+[KnownType(typeof(DefaultsType))]
+[KnownType(typeof(TargetType))]
+[KnownType(typeof(ObligationExpressionType[]))]
+[KnownType(typeof(AdviceExpressionType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1870,8 +2067,9 @@ public partial class PolicyType {
     private string ruleCombiningAlgIdField;
     
     private string maxDelegationDepthField;
-    
+
     /// <remarks/>
+    [DataMember]
     public string Description {
         get {
             return this.descriptionField;
@@ -1880,8 +2078,9 @@ public partial class PolicyType {
             this.descriptionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public PolicyIssuerType PolicyIssuer {
         get {
             return this.policyIssuerField;
@@ -1890,8 +2089,9 @@ public partial class PolicyType {
             this.policyIssuerField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public DefaultsType PolicyDefaults {
         get {
             return this.policyDefaultsField;
@@ -1900,8 +2100,9 @@ public partial class PolicyType {
             this.policyDefaultsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public TargetType Target {
         get {
             return this.targetField;
@@ -1910,8 +2111,9 @@ public partial class PolicyType {
             this.targetField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("CombinerParameters", typeof(CombinerParametersType))]
     [System.Xml.Serialization.XmlElementAttribute("Rule", typeof(RuleType))]
     [System.Xml.Serialization.XmlElementAttribute("RuleCombinerParameters", typeof(RuleCombinerParametersType))]
@@ -1924,8 +2126,9 @@ public partial class PolicyType {
             this.itemsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlArrayItemAttribute("ObligationExpression", IsNullable=false)]
     public ObligationExpressionType[] ObligationExpressions {
         get {
@@ -1935,8 +2138,9 @@ public partial class PolicyType {
             this.obligationExpressionsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlArrayItemAttribute("AdviceExpression", IsNullable=false)]
     public AdviceExpressionType[] AdviceExpressions {
         get {
@@ -1946,8 +2150,9 @@ public partial class PolicyType {
             this.adviceExpressionsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string PolicyId {
         get {
@@ -1957,8 +2162,9 @@ public partial class PolicyType {
             this.policyIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string Version {
         get {
@@ -1968,8 +2174,9 @@ public partial class PolicyType {
             this.versionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string RuleCombiningAlgId {
         get {
@@ -1979,8 +2186,9 @@ public partial class PolicyType {
             this.ruleCombiningAlgIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
     public string MaxDelegationDepth {
         get {
@@ -1993,6 +2201,11 @@ public partial class PolicyType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(TargetType))]
+[KnownType(typeof(ConditionType))]
+[KnownType(typeof(ObligationExpressionType[]))]
+[KnownType(typeof(AdviceExpressionType[]))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2016,7 +2229,8 @@ public partial class RuleType {
     private EffectType effectField;
 
     /// <remarks/>
- 
+
+    [DataMember]
     public string Description {
         get {
             return this.descriptionField;
@@ -2025,8 +2239,9 @@ public partial class RuleType {
             this.descriptionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public TargetType Target {
         get {
             return this.targetField;
@@ -2035,8 +2250,9 @@ public partial class RuleType {
             this.targetField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     public ConditionType Condition {
         get {
             return this.conditionField;
@@ -2045,8 +2261,9 @@ public partial class RuleType {
             this.conditionField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlArrayItemAttribute("ObligationExpression", IsNullable=false)]
     public ObligationExpressionType[] ObligationExpressions {
         get {
@@ -2056,8 +2273,9 @@ public partial class RuleType {
             this.obligationExpressionsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlArrayItemAttribute("AdviceExpression", IsNullable=false)]
     public AdviceExpressionType[] AdviceExpressions {
         get {
@@ -2067,8 +2285,9 @@ public partial class RuleType {
             this.adviceExpressionsField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string RuleId {
         get {
@@ -2078,8 +2297,9 @@ public partial class RuleType {
             this.ruleIdField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public EffectType Effect {
         get {
@@ -2092,6 +2312,8 @@ public partial class RuleType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(ExpressionType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2101,8 +2323,9 @@ public partial class RuleType {
 public partial class ConditionType {
     
     private ExpressionType itemField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Apply", typeof(ApplyType))]
     [System.Xml.Serialization.XmlElementAttribute("AttributeDesignator", typeof(AttributeDesignatorType))]
     [System.Xml.Serialization.XmlElementAttribute("AttributeSelector", typeof(AttributeSelectorType))]
@@ -2120,6 +2343,7 @@ public partial class ConditionType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2129,8 +2353,9 @@ public partial class ConditionType {
 public partial class RuleCombinerParametersType : CombinerParametersType {
     
     private string ruleIdRefField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string RuleIdRef {
         get {
@@ -2143,6 +2368,8 @@ public partial class RuleCombinerParametersType : CombinerParametersType {
 }
 
 /// <remarks/>
+[DataContract]
+[KnownType(typeof(ExpressionType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2154,8 +2381,9 @@ public partial class VariableDefinitionType {
     private ExpressionType itemField;
     
     private string variableIdField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlElementAttribute("Apply", typeof(ApplyType))]
     [System.Xml.Serialization.XmlElementAttribute("AttributeDesignator", typeof(AttributeDesignatorType))]
     [System.Xml.Serialization.XmlElementAttribute("AttributeSelector", typeof(AttributeSelectorType))]
@@ -2170,8 +2398,9 @@ public partial class VariableDefinitionType {
             this.itemField = value;
         }
     }
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string VariableId {
         get {
@@ -2184,6 +2413,7 @@ public partial class VariableDefinitionType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2193,8 +2423,9 @@ public partial class VariableDefinitionType {
 public partial class PolicyCombinerParametersType : CombinerParametersType {
     
     private string policyIdRefField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string PolicyIdRef {
         get {
@@ -2207,6 +2438,7 @@ public partial class PolicyCombinerParametersType : CombinerParametersType {
 }
 
 /// <remarks/>
+[DataContract]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2216,8 +2448,9 @@ public partial class PolicyCombinerParametersType : CombinerParametersType {
 public partial class PolicySetCombinerParametersType : CombinerParametersType {
     
     private string policySetIdRefField;
-    
+
     /// <remarks/>
+    [DataMember]
     [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
     public string PolicySetIdRef {
         get {
