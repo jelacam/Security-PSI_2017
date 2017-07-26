@@ -15,13 +15,13 @@ namespace Service
     {
         public string AccessDenied()
         {
+            Console.WriteLine("Test method for access denied. [Student try to edit remaining courses]");
             return "Edit student remaining courses...";
         }
 
-      
         public string AccessPermit()
         {
-         
+            Console.WriteLine("Test method for access permit. [Student try to view remaining courses]");
             return "Student remaining courses...";
         }
     }

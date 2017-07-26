@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace PolicyAdministrationPoint
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             NetTcpBinding binding = new NetTcpBinding();
             binding.CloseTimeout = new TimeSpan(0, 10, 0);
@@ -31,7 +31,6 @@ namespace PolicyAdministrationPoint
 
             host.Description.Behaviors.Remove(typeof(ServiceDebugBehavior));
             host.Description.Behaviors.Add(new ServiceDebugBehavior() { IncludeExceptionDetailInFaults = true });
-
 
             try
             {

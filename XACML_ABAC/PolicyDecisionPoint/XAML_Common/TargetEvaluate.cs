@@ -1,4 +1,5 @@
-﻿using PolicyDecisionPoint.XACML_Functions;
+﻿using Contracts;
+using PolicyDecisionPoint.XACML_Functions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,6 @@ namespace PolicyDecisionPoint.XAML_Common
 {
     public static class TargetEvaluate
     {
-
         public static TargetResult CheckTarget(TargetType Target, RequestType request)
         {
             int numberOfMatchAnyOf = 0;
@@ -42,9 +42,8 @@ namespace PolicyDecisionPoint.XAML_Common
                                     AttributeValueType AttributeValue = Match.AttributeValue;
 
                                     // Evaluacija Match elementa prema string-equal funkciji
-                                    if (Match.MatchId.Equals("urn:oasis:names:tc:xacml:1.0:function:string-equal"))
+                                    if (Match.MatchId.Equals(XacmlFunctions.STRING_EQUAL))
                                     {
-
                                         List<AttributeType> Attributes = AttributeDesignatorManager.RequestBagOfValues(AttributeDesignator, request);
 
                                         if (Attributes.Count == 0)
@@ -56,7 +55,6 @@ namespace PolicyDecisionPoint.XAML_Common
                                                 numberOfIndeterminateMatch++;
                                             }
                                             continue;
-
                                         }
                                         string attributeValue = string.Empty;
 
@@ -68,9 +66,7 @@ namespace PolicyDecisionPoint.XAML_Common
                                                 XmlNode node = attrValue.Any[0];
                                                 attributeValue = node.Value;
                                             }
-
                                         }
-
 
                                         bool decision = StringEqual.CheckIfMatch(AttributeValue.Any[0].Value, attributeValue);
 
@@ -78,14 +74,12 @@ namespace PolicyDecisionPoint.XAML_Common
                                         {
                                             numberOfFalseMatch++;
                                         }
-
                                     }
                                 }
                             }
-                            catch (Exception )
+                            catch (Exception)
                             {
                                 numberOfIndeterminateMatch++;
-                                
                             }
 
                             /// AllOf evaluacija
@@ -126,7 +120,7 @@ namespace PolicyDecisionPoint.XAML_Common
                 }
                 else
                 {
-                    // empty target 
+                    // empty target
                     return TargetResult.Match;
                 }
             }
@@ -135,7 +129,6 @@ namespace PolicyDecisionPoint.XAML_Common
                 // empty target
                 return TargetResult.Match;
             }
-
 
             if (numberOfNoMatchAnyOf > 0)
             {
@@ -149,8 +142,6 @@ namespace PolicyDecisionPoint.XAML_Common
             {
                 return TargetResult.Indeterminate;
             }
-
         }
-
     }
 }

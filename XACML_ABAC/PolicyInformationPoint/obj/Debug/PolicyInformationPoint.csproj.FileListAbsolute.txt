@@ -1,8 +1,8 @@
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyInformationPoint\obj\Debug\PolicyInformationPoint.csprojResolveAssemblyReference.cache
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyInformationPoint\bin\Debug\PolicyInformationPoint.exe.config
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyInformationPoint\bin\Debug\PolicyInformationPoint.exe
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyInformationPoint\bin\Debug\PolicyInformationPoint.pdb
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyInformationPoint\bin\Debug\Contracts.dll
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyInformationPoint\bin\Debug\Contracts.pdb
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyInformationPoint\obj\Debug\PolicyInformationPoint.csprojResolveAssemblyReference.cache
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyInformationPoint\obj\Debug\PolicyInformationPoint.exe
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyInformationPoint\obj\Debug\PolicyInformationPoint.pdb

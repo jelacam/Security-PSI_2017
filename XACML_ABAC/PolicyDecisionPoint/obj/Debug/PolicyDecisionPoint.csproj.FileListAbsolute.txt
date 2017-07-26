@@ -4,11 +4,11 @@ C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\PolicyDecisionPoint\Pol
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\PolicyDecisionPoint\PolicyDecisionPoint\obj\Debug\PolicyDecisionPoint.exe
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\PolicyDecisionPoint\PolicyDecisionPoint\obj\Debug\PolicyDecisionPoint.pdb
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\PolicyDecisionPoint\PolicyDecisionPoint\obj\Debug\PolicyDecisionPoint.csprojResolveAssemblyReference.cache
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyDecisionPoint\obj\Debug\PolicyDecisionPoint.csprojResolveAssemblyReference.cache
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyDecisionPoint\bin\Debug\PolicyDecisionPoint.exe.config
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyDecisionPoint\bin\Debug\PolicyDecisionPoint.exe
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyDecisionPoint\bin\Debug\PolicyDecisionPoint.pdb
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyDecisionPoint\bin\Debug\Contracts.dll
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyDecisionPoint\bin\Debug\Contracts.pdb
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyDecisionPoint\obj\Debug\PolicyDecisionPoint.csprojResolveAssemblyReference.cache
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyDecisionPoint\obj\Debug\PolicyDecisionPoint.exe
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyDecisionPoint\obj\Debug\PolicyDecisionPoint.pdb

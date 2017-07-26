@@ -28,8 +28,6 @@ namespace PolicyDecisionPoint.XAML_Common
             string AllOfValue = string.Empty;
             string AnyOfValue = string.Empty;
 
-            
-
             TargetType Target = rule.Target;
 
             ConditionType Condition = rule.Condition;
@@ -38,10 +36,18 @@ namespace PolicyDecisionPoint.XAML_Common
             {
                 TargetResult TargetValue = TargetEvaluate.CheckTarget(Target, request);
 
-                ConditionResult ConditionValue = ConditionEvaluate.CheckCondition(Condition, request);
-                
-               
-                Console.WriteLine("Target evaluation: {0}", TargetValue.ToString());
+                ConditionResult ConditionValue;
+
+                if (TargetValue == TargetResult.NoMatch)
+                {
+                    ConditionValue = ConditionResult.DontCare;
+                }
+                else
+                {
+                    ConditionValue = ConditionEvaluate.CheckCondition(Condition, request);
+                }
+
+                Console.WriteLine("\nTarget evaluation: {0}", TargetValue.ToString());
                 Console.WriteLine("Condition evaluation: {0}", ConditionValue.ToString());
 
                 // RULE EVALUACIJA

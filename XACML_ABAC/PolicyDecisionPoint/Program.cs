@@ -16,7 +16,7 @@ namespace PolicyDecisionPoint
 {
     class Program
     {
-        public static PolicyType policy = new PolicyType();
+       
 
         static void Main(string[] args)
         {
@@ -43,16 +43,6 @@ namespace PolicyDecisionPoint
             {
                 host.Open();
                 Console.WriteLine("PdpService is opened. Press <enter> to finish ... ");
-
-
-                string PAPaddress = "net.tcp://localhost:6000/PapService";
-
-                using (PapProxy proxy = new PapProxy(binding, new EndpointAddress(new Uri(PAPaddress))))
-                {
-                    policy = proxy.LoadPolicy();
-                    Console.WriteLine("Policy loaded...");
-                }
-
                 Console.ReadLine();
                 host.Close();
             }

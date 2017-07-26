@@ -1,6 +1,7 @@
 ﻿using PolicyDecisionPoint.XAML_Common;
 using System;
 
+
 namespace PolicyDecisionPoint.XACML_CombAlg
 {
     public class FirstApplicable
@@ -20,10 +21,12 @@ namespace PolicyDecisionPoint.XACML_CombAlg
 
             foreach (RuleType rule in rules)
             {
+                Console.WriteLine("\n-->Rule Id: {0}<--", rule.RuleId.ToString());
                 // metoda koja evaluira pravilo
                 try
                 {
                     decision = PolicyEvaluateManager.RuleEvaluate(request, rule);
+                    Console.WriteLine("PDP decision: {0}", decision.ToString());
                 }
                 catch (Exception e)
                 {

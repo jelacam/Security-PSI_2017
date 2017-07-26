@@ -1,4 +1,5 @@
-﻿using PolicyDecisionPoint.XACML_Functions;
+﻿using Contracts;
+using PolicyDecisionPoint.XACML_Functions;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -11,8 +12,13 @@ namespace PolicyDecisionPoint.XAML_Common
         {
             ConditionResult Result = ConditionResult.DontCare;
 
+            if (Condition == null)
+            {
+                return ConditionResult.True;
+            }
+
             ApplyType Item = Condition.Item as ApplyType;
-            if (Item.FunctionId.Equals("urn:oasis:names:tc:xacml:2.0:function:time-in-range"))
+            if (Item.FunctionId.Equals(XacmlFunctions.TIME_IN_RANGE))
             {
                 bool TimeConditionResult = false;
 

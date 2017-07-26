@@ -36,7 +36,12 @@ namespace PolicyEnforcementPoint
 
             string[] Attributes = operationContext.RequestContext.RequestMessage.Headers.Action.Split('_');
 
-
+            //WindowsIdentity identity = operationContext.ClaimsPrincipal.Identity as WindowsIdentity;
+            //foreach(IdentityReference group in identity.Groups)
+            //{
+            //    SecurityIdentifier sid = group.Translate(typeof(SecurityIdentifier)) as SecurityIdentifier;
+            //    var name = sid.Translate(typeof(NTAccount));
+            //}
 
             // service binding i adress
             NetTcpBinding binding = new NetTcpBinding();
@@ -49,20 +54,20 @@ namespace PolicyEnforcementPoint
             DecisionType decision = DecisionType.Indeterminate;
 
             Dictionary<string, List<DomainAttribute>> DomainAttributes = new Dictionary<string, List<DomainAttribute>>();
-            DomainAttributes["urn:oasis:names:tc:xacml:3.0:attribute-category:action"] = new List<DomainAttribute>()
+            DomainAttributes[Contracts.XacmlAction.CATEGORY] = new List<DomainAttribute>()
             {
-                new DomainAttribute() { AttributeId = "urn:oasis:names:tc:xacml:1.0:action:action-id", DataType=  "http://www.w3.org/2001/XMLSchema#string", Value = Attributes[0].ToLower() }
+                new DomainAttribute() { AttributeId = Contracts.XacmlAction.ID, DataType = XacmlDataTypes.STRING, Value = Attributes[0].ToLower() }
             };
 
-            DomainAttributes["urn:oasis:names:tc:xacml:3.0:attribute-category:resource"] = new List<DomainAttribute>()
+            DomainAttributes[XacmlResource.CATEGORY] = new List<DomainAttribute>()
             {
-                new DomainAttribute() { AttributeId = "urn:oasis:names:tc:xacml:1.0:resource:resource-id", DataType =  "http://www.w3.org/2001/XMLSchema#string", Value = Attributes[1].ToLower() }
+                new DomainAttribute() { AttributeId = XacmlResource.ID, DataType = XacmlDataTypes.STRING, Value = Attributes[1].ToLower() }
             };
 
-            DomainAttributes["urn:oasis:names:tc:xacml:3.0:subject-category:access-subject"] = new List<DomainAttribute>()
+            DomainAttributes[XacmlSubject.CATEGORY] = new List<DomainAttribute>()
             {
-                new DomainAttribute() { AttributeId = "urn:oasis:names:tc:xacml:1.0:subject:subject-id", DataType =  "http://www.w3.org/2001/XMLSchema#string", Value = Subject },
-                new DomainAttribute() { AttributeId = "urn:oasis:names:tc:xacml:1.0:subject:subject-location", DataType =  "http://www.w3.org/2001/XMLSchema#string", Value = "Novi Sad"}
+                new DomainAttribute() { AttributeId = XacmlSubject.ID, DataType = XacmlDataTypes.STRING, Value = Subject },
+                new DomainAttribute() { AttributeId = XacmlSubject.LOCATION, DataType = XacmlDataTypes.STRING, Value = "Novi Sad"}
             };
 
 
@@ -73,11 +78,12 @@ namespace PolicyEnforcementPoint
                decision = proxy.CheckAccess(DomainAttributes);
             }
 
-            //Console.WriteLine("\n" + decision.ToString());
-
+           
+            Console.WriteLine("PEP response: {0}", decision.ToString());
 
             if (decision == DecisionType.Permit)
             {
+               
                 return true;
             }
             else

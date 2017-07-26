@@ -1,10 +1,7 @@
-﻿using Contracts.Contracts;
+﻿using Contracts;
+using Contracts.Contracts;
+using PolicyInformationPoint.Environment;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Contracts;
 
 namespace PolicyInformationPoint
 {
@@ -12,15 +9,31 @@ namespace PolicyInformationPoint
     {
         public DomainAttribute RequestEnvironmentAttribute(string AttrType)
         {
+            EnvironmentAttributes EnvAttr = null;
+
+            DomainAttribute DomainAttr = null;
+
+            switch (AttrType)
+            {
+                case XacmlEnvironment.CURRENT_TIME:
+                    {
+                        EnvAttr = RequestForCurrentTime();
+                        DomainAttr = EnvAttr.RequestForEnvironmentAttributes();
+                        DomainAttr.AttributeId = XacmlEnvironment.CURRENT_TIME;
+                        DomainAttr.DataType = XacmlDataTypes.TIME;
+                        break;
+                    }
+            }
+            DomainAttr.Category = XacmlEnvironment.CATEGORY;
             Console.WriteLine("PIP - Request for environment attribute - current-time");
-            DomainAttribute CurrentTimeAttribute = new DomainAttribute();
-            CurrentTimeAttribute.AttributeId = "urn:oasis:names:tc:xacml:1.0:environment:current-time";
-            CurrentTimeAttribute.Category = "urn:oasis:names:tc:xacml:3.0:attribute-category:environment";
-            CurrentTimeAttribute.DataType = "http://www.w3.org/2001/XMLSchema#time";
-            CurrentTimeAttribute.Value = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
 
-            return CurrentTimeAttribute;
+            return DomainAttr;
+        }
 
+        private EnvironmentAttributes RequestForCurrentTime()
+        {
+            CurrentTime CurrentTime = new CurrentTime();
+            return CurrentTime;
         }
     }
 }

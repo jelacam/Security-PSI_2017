@@ -19,9 +19,11 @@ namespace PolicyAdministrationPoint
             //StreamReader reader = new StreamReader("TimeRange.checkTimeInRange.xml");
             var value = serializer.Deserialize(reader);
 
-            /// kreiranje objekta koji predstavlja definisanu politiku 
+            /// kreiranje objekta koji predstavlja definisanu politiku
             PolicyType policy = new PolicyType();
             policy = value as PolicyType;
+
+            Console.WriteLine("Policy loaded");
 
             return policy;
         }

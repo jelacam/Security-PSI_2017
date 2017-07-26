@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="XACMLConstants.cs" />
     <Compile Include="Contracts\IPapContract.cs" />
     <Compile Include="Contracts\IPipContract.cs" />
     <Compile Include="DomainAttribute.cs" />

@@ -8,7 +8,44 @@
         <XPathVersion>http://www.w3.org/TR/1999/REC-xpath-19991116</XPathVersion>
     </PolicyDefaults>
     <Target />
-    <Rule  Effect="Permit" RuleId="http://axiomatics.com/alfa/identifier/rule1.remaining.courses">
+	<Rule  Effect="Permit" RuleId="edit_remaining_courses">
+		<Description>Professor can edit remaining courses</Description>
+		<Target>
+			<AnyOf>
+				<AllOf>
+					<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">professor</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:3.0:subject-category:access-subject"
+                            MustBePresent="true"/>
+                    </Match>
+					<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">edit</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action"
+                            MustBePresent="false"/>
+                    </Match>
+					<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#string">remaining courses</AttributeValue>
+                        <AttributeDesignator 
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+                            MustBePresent="false"/>
+                    </Match>
+				</AllOf>
+			</AnyOf>
+		</Target>
+	</Rule>
+	
+    <Rule  Effect="Permit" RuleId="view_remaining_courses">
         <Description>Student can view remaining courses.</Description>
         <Target>
             <AnyOf>

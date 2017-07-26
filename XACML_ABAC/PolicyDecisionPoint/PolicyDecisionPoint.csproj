@@ -64,7 +64,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contracts\Common.csproj">
+    <ProjectReference Include="..\Contract\Common.csproj">
       <Project>{88f60a77-4d34-419d-90f3-8538cf815ef5}</Project>
       <Name>Common</Name>
     </ProjectReference>
