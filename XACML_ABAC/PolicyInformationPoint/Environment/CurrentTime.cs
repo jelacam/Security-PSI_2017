@@ -15,6 +15,9 @@ namespace PolicyInformationPoint.Environment
 
             DomainAttribute CurrentTime = new DomainAttribute();
             CurrentTime.Value = value;
+            CurrentTime.AttributeId = XacmlEnvironment.CURRENT_TIME;
+            CurrentTime.DataType = XacmlDataTypes.TIME;
+            CurrentTime.Category = XacmlEnvironment.CATEGORY;
 
             return CurrentTime;
         }

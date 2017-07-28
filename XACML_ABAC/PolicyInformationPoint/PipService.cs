@@ -2,38 +2,28 @@
 using Contracts.Contracts;
 using PolicyInformationPoint.Environment;
 using System;
+using System.Collections.Generic;
 
 namespace PolicyInformationPoint
 {
     public class PipService : IPipContract
     {
+        public static Dictionary<string, EnvironmentAttributes> GetEnvironmentAttribute = new Dictionary<string, EnvironmentAttributes>(3);
+
+        public PipService()
+        {
+            GetEnvironmentAttribute[XacmlEnvironment.CURRENT_TIME] = new CurrentTime();
+        }
+
         public DomainAttribute RequestEnvironmentAttribute(string AttrType)
         {
-            EnvironmentAttributes EnvAttr = null;
-
             DomainAttribute DomainAttr = null;
 
-            switch (AttrType)
-            {
-                case XacmlEnvironment.CURRENT_TIME:
-                    {
-                        EnvAttr = RequestForCurrentTime();
-                        DomainAttr = EnvAttr.RequestForEnvironmentAttributes();
-                        DomainAttr.AttributeId = XacmlEnvironment.CURRENT_TIME;
-                        DomainAttr.DataType = XacmlDataTypes.TIME;
-                        break;
-                    }
-            }
-            DomainAttr.Category = XacmlEnvironment.CATEGORY;
+            DomainAttr = GetEnvironmentAttribute[AttrType].RequestForEnvironmentAttributes();
+
             Console.WriteLine("PIP - Request for environment attribute - current-time");
 
             return DomainAttr;
-        }
-
-        private EnvironmentAttributes RequestForCurrentTime()
-        {
-            CurrentTime CurrentTime = new CurrentTime();
-            return CurrentTime;
         }
     }
 }

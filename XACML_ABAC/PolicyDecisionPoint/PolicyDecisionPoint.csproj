@@ -46,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PapProxy.cs" />
+    <Compile Include="XACML_Condition\ConditionAttributes.cs" />
+    <Compile Include="XACML_Condition\TimeInRangeCondition.cs" />
+    <Compile Include="XACML_Match\MatchEvaluation.cs" />
     <Compile Include="XAML_Common\AttributeDesignatorManager.cs" />
     <Compile Include="ContextHandler.cs" />
     <Compile Include="PdpService.cs" />

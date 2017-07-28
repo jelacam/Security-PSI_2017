@@ -1,5 +1,6 @@
 ﻿using Contracts;
 using PolicyDecisionPoint.XACML_Functions;
+using PolicyDecisionPoint.XACML_Match;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,12 @@ namespace PolicyDecisionPoint.XAML_Common
 {
     public static class TargetEvaluate
     {
+        public static Dictionary<string, MatchEvaluation> MatchFunctions = new Dictionary<string, MatchEvaluation>(3);
+
         public static TargetResult CheckTarget(TargetType Target, RequestType request)
         {
+            MatchFunctions[XacmlFunctions.STRING_EQUAL] = new StringEqual();
+
             int numberOfMatchAnyOf = 0;
             int numberOfNoMatchAnyOf = 0;
             int numberOfIndeterminateAnyOf = 0;
@@ -41,39 +46,38 @@ namespace PolicyDecisionPoint.XAML_Common
                                     AttributeDesignatorType AttributeDesignator = Match.Item as AttributeDesignatorType;
                                     AttributeValueType AttributeValue = Match.AttributeValue;
 
-                                    // Evaluacija Match elementa prema string-equal funkciji
-                                    if (Match.MatchId.Equals(XacmlFunctions.STRING_EQUAL))
+                                    List<AttributeType> Attributes = AttributeDesignatorManager.RequestBagOfValues(AttributeDesignator, request);
+
+                                    if (Attributes.Count == 0)
                                     {
-                                        List<AttributeType> Attributes = AttributeDesignatorManager.RequestBagOfValues(AttributeDesignator, request);
-
-                                        if (Attributes.Count == 0)
+                                        // bag of values je prazan, provera atributa MustBePresented
+                                        if (AttributeDesignator.MustBePresent)
                                         {
-                                            // bag of values je prazan, provera atributa MustBePresented
-                                            if (AttributeDesignator.MustBePresent)
-                                            {
-                                                // TODO zahteva dobavljanje atributa od PIP
-                                                numberOfIndeterminateMatch++;
-                                            }
-                                            continue;
+                                            // TODO zahteva dobavljanje atributa od PIP
+                                            numberOfIndeterminateMatch++;
                                         }
-                                        string attributeValue = string.Empty;
+                                        continue;
+                                    }
+                                    string attributeValue = string.Empty;
 
-                                        foreach (AttributeType attr in Attributes)
+                                    foreach (AttributeType attr in Attributes)
+                                    {
+                                        AttributeValueType[] attrValues = attr.AttributeValue;
+                                        foreach (AttributeValueType attrValue in attrValues)
                                         {
-                                            AttributeValueType[] attrValues = attr.AttributeValue;
-                                            foreach (AttributeValueType attrValue in attrValues)
-                                            {
-                                                XmlNode node = attrValue.Any[0];
-                                                attributeValue = node.Value;
-                                            }
+                                            XmlNode node = attrValue.Any[0];
+                                            attributeValue = node.Value;
                                         }
+                                    }
 
-                                        bool decision = StringEqual.CheckIfMatch(AttributeValue.Any[0].Value, attributeValue);
+                                    string value = AttributeValue.Any[0].Value.ToString();
 
-                                        if (!decision)
-                                        {
-                                            numberOfFalseMatch++;
-                                        }
+                                    // evaluacija prema funkciji definisanoj MatchId atributom
+                                    bool decision = MatchFunctions[Match.MatchId].CheckIfMatch(ref value, ref attributeValue);
+
+                                    if (!decision)
+                                    {
+                                        numberOfFalseMatch++;
                                     }
                                 }
                             }
@@ -85,17 +89,14 @@ namespace PolicyDecisionPoint.XAML_Common
                             /// AllOf evaluacija
                             if (numberOfFalseMatch != 0)
                             {
-                                //AllOfValue = NO_MATCH;
                                 numberOfNoMatchAllOf++;
                             }
                             else if (numberOfIndeterminateMatch > 0)
                             {
-                                //AllOfValue = INDETERMINATE;
                                 numberOfIndeterminateAllOf++;
                             }
                             else if (numberOfFalseMatch == 0 && numberOfIndeterminateMatch == 0)
                             {
-                                //AllOfValue = MATCH;
                                 numberOfMatchAllOf++;
                             }
                         }
@@ -103,17 +104,14 @@ namespace PolicyDecisionPoint.XAML_Common
                         /// AnyOf evaluacija
                         if (numberOfIndeterminateAllOf > 0 && numberOfMatchAllOf == 0)
                         {
-                            //AnyOfValue = INDETERMINATE;
                             numberOfIndeterminateAnyOf++;
                         }
                         else if (numberOfMatchAllOf > 0)
                         {
-                            //AnyOfValue = MATCH;
                             numberOfMatchAnyOf++;
                         }
                         else if (numberOfNoMatchAllOf > 0)
                         {
-                            //AnyOfValue = NO_MATCH;
                             numberOfNoMatchAnyOf++;
                         }
                     }
