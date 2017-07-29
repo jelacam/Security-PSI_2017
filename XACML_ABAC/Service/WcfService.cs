@@ -24,5 +24,11 @@ namespace Service
             Console.WriteLine("Test method for access permit. [Student try to view remaining courses]");
             return "Student remaining courses...";
         }
+
+        public string ExamRegistration()
+        {
+            Console.WriteLine("Test method for exam registration. [Student try to register an exam]");
+            return "Student exam registration...";
+        }
     }
 }

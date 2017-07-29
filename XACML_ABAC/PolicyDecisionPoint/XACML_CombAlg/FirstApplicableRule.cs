@@ -1,10 +1,9 @@
 ﻿using PolicyDecisionPoint.XAML_Common;
 using System;
 
-
 namespace PolicyDecisionPoint.XACML_CombAlg
 {
-    public class FirstApplicable
+    public class FirstApplicableRule : RuleCombiningAlg
     {
         private string identifier = "urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable";
 
@@ -15,7 +14,7 @@ namespace PolicyDecisionPoint.XACML_CombAlg
         /// </summary>
         /// <param name="rules"></param>
         /// <returns></returns>
-        public DecisionType firstApplicableEffectRuleCombiningAlgorithm(RuleType[] rules, RequestType request)
+        public override DecisionType Evaluate(RuleType[] rules, RequestType request)
         {
             DecisionType decision = DecisionType.NotApplicable;
 

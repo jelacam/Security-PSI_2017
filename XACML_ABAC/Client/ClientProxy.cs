@@ -11,7 +11,7 @@ namespace Client
         public ClientProxy(NetTcpBinding binding, EndpointAddress address)
             : base(binding, address)
         {
-            factory = this.CreateChannel();
+            factory = CreateChannel();
         }
 
         public string AccessDenied()
@@ -32,6 +32,19 @@ namespace Client
             try
             {
                 return factory.AccessPermit();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Proxy error. Message: {0}", e.Message);
+                return null;
+            }
+        }
+
+        public string ExamRegistration()
+        {
+            try
+            {
+                return factory.ExamRegistration();
             }
             catch (Exception e)
             {

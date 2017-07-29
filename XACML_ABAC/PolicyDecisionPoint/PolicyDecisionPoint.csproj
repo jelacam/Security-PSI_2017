@@ -46,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PapProxy.cs" />
+    <Compile Include="XACML_CombAlg\FirstApplicablePolicy.cs" />
+    <Compile Include="XACML_CombAlg\PolicyCombiningAlg.cs" />
+    <Compile Include="XACML_CombAlg\RuleCombiningAlg.cs" />
     <Compile Include="XACML_Condition\ConditionAttributes.cs" />
     <Compile Include="XACML_Condition\TimeInRangeCondition.cs" />
     <Compile Include="XACML_Match\MatchEvaluation.cs" />
@@ -55,7 +58,7 @@
     <Compile Include="PipProxy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XACML_CombAlg\FirstApplicable.cs" />
+    <Compile Include="XACML_CombAlg\FirstApplicableRule.cs" />
     <Compile Include="XACML_Functions\StringEqual.cs" />
     <Compile Include="XACML_Functions\TimeInRange.cs" />
     <Compile Include="XAML_Common\ConditionEvaluate.cs" />

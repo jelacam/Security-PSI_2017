@@ -21,7 +21,7 @@ namespace PolicyDecisionPoint.XACML_Condition
         /// <returns></returns>
         public override bool EvaluateConditionFor(ApplyType Item, RequestType request)
         {
-            bool TimeConditionResult = false;
+            bool TimeConditionResult = true;
 
             ApplyType currentTimeItem = Item.Items[0] as ApplyType;
             ApplyType lowerBoundItem = Item.Items[1] as ApplyType;
@@ -57,9 +57,17 @@ namespace PolicyDecisionPoint.XACML_Condition
 
             if (Attributes.Count == 0)
             {
-                // PDP zahteva od PIP dobavljanje atributa koji su potrebni
-                ContextHandler ch = new ContextHandler();
-                Attributes = ch.RequestForEnvironmentAttribute(attributeDesignator);
+                // Provera MustBePresented atributa
+                if (attributeDesignator.MustBePresent)
+                {
+                    // PDP zahteva od PIP dobavljanje atributa koji su potrebni
+                    ContextHandler ch = new ContextHandler();
+                    Attributes = ch.RequestForEnvironmentAttribute(attributeDesignator);
+                }
+                else
+                {
+                    return TimeConditionResult;
+                }
             }
 
             TimeConditionResult = TimeConditionEvaluation(lowerBoundTimeValue, upperBoundTimeValue, Attributes, out exists);

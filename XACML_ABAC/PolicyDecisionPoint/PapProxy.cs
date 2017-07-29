@@ -10,22 +10,22 @@ namespace PolicyDecisionPoint
 {
     public class PapProxy : ChannelFactory<IPapContract>, IPapContract, IDisposable
     {
-        IPapContract factory;
+        private IPapContract factory;
 
         public PapProxy(NetTcpBinding binding, EndpointAddress address)
             : base(binding, address)
         {
             factory = CreateChannel();
         }
-        public PolicyType LoadPolicy()
+
+        public PolicySetType Load()
         {
             try
             {
-                return factory.LoadPolicy();
+                return factory.Load();
             }
             catch (Exception e)
             {
-
                 Console.WriteLine("PapProxy error: Message: {0}", e.Message);
                 return null;
             }

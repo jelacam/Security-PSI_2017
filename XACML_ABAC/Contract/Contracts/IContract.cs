@@ -18,5 +18,7 @@ namespace Contracts
         [OperationContract(Action = "edit_remaining courses")]
         string AccessDenied();
 
+        [OperationContract(Action = "register_exam")]
+        string ExamRegistration();
     }
 }

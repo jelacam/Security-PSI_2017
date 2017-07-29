@@ -69,4 +69,14 @@
         public const string STRING_EQUAL = "urn:oasis:names:tc:xacml:1.0:function:string-equal";
         public const string TIME_IN_RANGE = "urn:oasis:names:tc:xacml:2.0:function:time-in-range";
     }
+
+    public static class XacmlRuleCombAlg
+    {
+        public const string FIRST_APPLICABLE = "urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable";
+    }
+
+    public static class XacmlPolicyCombAlg
+    {
+        public const string FIRST_APPLICABLE = "urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable";
+    }
 }

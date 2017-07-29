@@ -4,6 +4,5 @@ C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Contracts\ob
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Contracts\obj\Debug\Contracts.pdb
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Contract\bin\Debug\Contracts.dll
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Contract\bin\Debug\Contracts.pdb
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Contract\obj\Debug\Common.csprojResolveAssemblyReference.cache
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Contract\obj\Debug\Contracts.dll
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Contract\obj\Debug\Contracts.pdb

@@ -11,19 +11,26 @@ namespace PolicyAdministrationPoint
 {
     public class PapService : IPapContract
     {
-        public PolicyType LoadPolicy()
+        public PolicySetType Load()
         {
-            /// deserijalizacija xml dokumenta koji specificira autorizacionu politiku
-            XmlSerializer serializer = new XmlSerializer(typeof(PolicyType));
+            XmlSerializer serializer = new XmlSerializer(typeof(PolicySetType));
             StreamReader reader = new StreamReader("rule1.main.xml");
             //StreamReader reader = new StreamReader("TimeRange.checkTimeInRange.xml");
             var value = serializer.Deserialize(reader);
 
             /// kreiranje objekta koji predstavlja definisanu politiku
-            PolicyType policy = new PolicyType();
-            policy = value as PolicyType;
+            PolicySetType policy = new PolicySetType();
 
-            Console.WriteLine("Policy loaded");
+            try
+            {
+                policy = value as PolicySetType;
+            }
+            catch (Exception)
+            {
+                policy = null;
+            }
+
+            Console.WriteLine("Policy set loaded");
 
             return policy;
         }

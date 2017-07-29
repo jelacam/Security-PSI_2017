@@ -7,9 +7,9 @@ using System.ServiceModel;
 
 namespace Client
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             NetTcpBinding binding = new NetTcpBinding();
             binding.CloseTimeout = new TimeSpan(0, 10, 0);
@@ -21,14 +21,18 @@ namespace Client
 
             using (ClientProxy proxy = new ClientProxy(binding, new EndpointAddress(new Uri(address))))
             {
-               
-
                 Console.WriteLine("\nRequest for editing student remaining courses.");
                 string ret = proxy.AccessDenied();
                 Console.WriteLine(ret);
+                Console.ReadKey();
 
-                Console.WriteLine("Request for student remaining courses.");
+                Console.WriteLine("\nRequest for student remaining courses.");
                 ret = proxy.AccessPermit();
+                Console.WriteLine(ret);
+                Console.ReadKey();
+
+                Console.WriteLine("\nRequest for exam registration.");
+                ret = proxy.ExamRegistration();
                 Console.WriteLine(ret);
             }
 
