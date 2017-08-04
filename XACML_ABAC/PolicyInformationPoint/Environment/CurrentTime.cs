@@ -11,11 +11,12 @@ namespace PolicyInformationPoint.Environment
     {
         public override DomainAttribute RequestForEnvironmentAttributes()
         {
-            string value = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
+            Console.WriteLine("PIP - Request for environment attribute - current time");
+            string value = DateTime.UtcNow.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
 
             DomainAttribute CurrentTime = new DomainAttribute();
             CurrentTime.Value = value;
-            CurrentTime.AttributeId = XacmlEnvironment.CURRENT_TIME;
+            CurrentTime.AttributeId = XacmlEnvironment.CURRENT_TIME_ID;
             CurrentTime.DataType = XacmlDataTypes.TIME;
             CurrentTime.Category = XacmlEnvironment.CATEGORY;
 

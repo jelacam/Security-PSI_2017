@@ -9,7 +9,7 @@ using System.Security.Permissions;
 
 namespace Contracts
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IContractCallback), SessionMode = SessionMode.Required)]
     public interface IContract
     {
         [OperationContract(Action = "view_remaining courses")]
@@ -20,5 +20,11 @@ namespace Contracts
 
         [OperationContract(Action = "register_exam")]
         string ExamRegistration();
+    }
+
+    public interface IContractCallback
+    {
+        [OperationContract]
+        string RequestClientIpAddress();
     }
 }

@@ -7,7 +7,7 @@ namespace PolicyDecisionPoint.XAML_Common
     public static class PolicyEvaluateManager
     {
         /// <summary>
-        ///     Metoda vrsi evaluaciju po principu definisanim XACML standardom: Sekcija C.8 First-applicable
+        ///     Metoda vrsi evaluaciju po principu definisanim XACML standardom
         /// </summary>
         /// <param name="request"></param>
         /// <param name="rule"></param>

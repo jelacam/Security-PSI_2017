@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using Contracts;
 
 namespace Client
 {
@@ -24,12 +25,12 @@ namespace Client
                 Console.WriteLine("\nRequest for editing student remaining courses.");
                 string ret = proxy.AccessDenied();
                 Console.WriteLine(ret);
-                Console.ReadKey();
+                // Console.ReadKey();
 
                 Console.WriteLine("\nRequest for student remaining courses.");
                 ret = proxy.AccessPermit();
                 Console.WriteLine(ret);
-                Console.ReadKey();
+                //Console.ReadKey();
 
                 Console.WriteLine("\nRequest for exam registration.");
                 ret = proxy.ExamRegistration();

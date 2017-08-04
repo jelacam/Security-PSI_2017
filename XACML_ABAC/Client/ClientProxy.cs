@@ -4,12 +4,12 @@ using System.ServiceModel;
 
 namespace Client
 {
-    public class ClientProxy : ChannelFactory<IContract>, IContract, IDisposable
+    public class ClientProxy : DuplexChannelFactory<IContract>, IContract, IDisposable
     {
         private IContract factory;
 
         public ClientProxy(NetTcpBinding binding, EndpointAddress address)
-            : base(binding, address)
+            : base(new InstanceContext(new LocationService()), binding, address)
         {
             factory = CreateChannel();
         }

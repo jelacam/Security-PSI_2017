@@ -11,11 +11,15 @@ using System.IdentityModel.Claims;
 
 namespace Service
 {
+    //[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple,
+    //                 InstanceContextMode = InstanceContextMode.PerCall,
+    //                 UseSynchronizationContext = false)]
     public class WcfService : IContract
     {
         public string AccessDenied()
         {
             Console.WriteLine("Test method for access denied. [Student try to edit remaining courses]");
+
             return "Edit student remaining courses...";
         }
 

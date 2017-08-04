@@ -39,6 +39,8 @@
         public const string ID = "urn:oasis:names:tc:xacml:1.0:subject:subject-id";
 
         public const string LOCATION = "urn:oasis:names:tc:xacml:1.0:subject:subject-location";
+
+        public const string ROLE = "urn:oasis:names:tc:xacml:1.0:subject:subject-role";
     }
 
     public static class XacmlEnvironment
@@ -51,7 +53,9 @@
         /// <summary>
         ///  This identifier indicates current time
         /// </summary>
-        public const string CURRENT_TIME = "urn:oasis:names:tc:xacml:1.0:environment:current-time";
+        public const string CURRENT_TIME_ID = "urn:oasis:names:tc:xacml:1.0:environment:current-time";
+
+        public const string CURRENT_LOCATION_ID = "urn:oasis:names:tc:xacml:3.0:environment:location";
     }
 
     public static class XacmlDataTypes

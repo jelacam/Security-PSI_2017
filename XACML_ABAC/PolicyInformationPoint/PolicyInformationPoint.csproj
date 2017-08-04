@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Environment\CurrentLocation.cs" />
     <Compile Include="Environment\CurrentTime.cs" />
     <Compile Include="Environment\EnvironmentAttributes.cs" />
     <Compile Include="PipService.cs" />

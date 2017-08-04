@@ -24,7 +24,7 @@
 							<AttributeValue
 								DataType="http://www.w3.org/2001/XMLSchema#string">professor</AttributeValue>
 							<AttributeDesignator 
-								AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+								AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-role"
 								DataType="http://www.w3.org/2001/XMLSchema#string"
 								Category="urn:oasis:names:tc:xacml:3.0:subject-category:access-subject"
 								MustBePresent="true"/>
@@ -61,7 +61,7 @@
 							<AttributeValue
 								DataType="http://www.w3.org/2001/XMLSchema#string">student</AttributeValue>
 							<AttributeDesignator 
-								AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+								AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-role"
 								DataType="http://www.w3.org/2001/XMLSchema#string"
 								Category="urn:oasis:names:tc:xacml:3.0:subject-category:access-subject"
 								MustBePresent="true"/>
@@ -82,16 +82,16 @@
 								AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
 								DataType="http://www.w3.org/2001/XMLSchema#string"
 								Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
-								MustBePresent="true" />
+								MustBePresent="true"/>
 						</Match>
 						<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
 							<AttributeValue
 								DataType="http://www.w3.org/2001/XMLSchema#string">Novi Sad</AttributeValue>
 							<AttributeDesignator 
-								AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-location"
+								AttributeId="urn:oasis:names:tc:xacml:3.0:environment:location"
 								DataType="http://www.w3.org/2001/XMLSchema#string"
-								Category="urn:oasis:names:tc:xacml:3.0:subject-category:access-subject"
-								MustBePresent="true" />
+								Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"
+								MustBePresent="true"/>
 						</Match>
 					</AllOf>
 				</AnyOf>
@@ -99,25 +99,19 @@
 			
 			<Condition>
 				<Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:time-in-range" >
-					
 					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only" >
 						<AttributeDesignator 
 							AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-time"
 							DataType="http://www.w3.org/2001/XMLSchema#time"
 							Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"
-							MustBePresent="true"
-						/>
+							MustBePresent="true"/>
 					</Apply>
-					
 					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only" >
 						<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-bag" >
 							<AttributeValue
 								DataType="http://www.w3.org/2001/XMLSchema#time">09:00:00</AttributeValue>
 						</Apply>
 					</Apply>
-					
-					
-					
 					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only" >
 						<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-bag" >
 							<AttributeValue
@@ -151,7 +145,7 @@
 							<AttributeValue
 								DataType="http://www.w3.org/2001/XMLSchema#string">student</AttributeValue>
 							<AttributeDesignator 
-								AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+								AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-role"
 								DataType="http://www.w3.org/2001/XMLSchema#string"
 								Category="urn:oasis:names:tc:xacml:3.0:subject-category:access-subject"
 								MustBePresent="true"/>
@@ -178,10 +172,10 @@
 							<AttributeValue
 								DataType="http://www.w3.org/2001/XMLSchema#string">Novi Sad</AttributeValue>
 							<AttributeDesignator 
-								AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-location"
+								AttributeId="urn:oasis:names:tc:xacml:3.0:environment:location"
 								DataType="http://www.w3.org/2001/XMLSchema#string"
-								Category="urn:oasis:names:tc:xacml:3.0:subject-category:access-subject"
-								MustBePresent="true" />
+								Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"
+								MustBePresent="true"/>
 						</Match>
 					</AllOf>
 				</AnyOf>

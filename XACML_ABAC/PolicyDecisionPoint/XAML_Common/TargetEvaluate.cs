@@ -18,6 +18,8 @@ namespace PolicyDecisionPoint.XAML_Common
         {
             MatchFunctions[XacmlFunctions.STRING_EQUAL] = new StringEqual();
 
+            ContextHandler ch = new ContextHandler();
+
             int numberOfMatchAnyOf = 0;
             int numberOfNoMatchAnyOf = 0;
             int numberOfIndeterminateAnyOf = 0;
@@ -48,15 +50,23 @@ namespace PolicyDecisionPoint.XAML_Common
 
                                     List<AttributeType> Attributes = AttributeDesignatorManager.RequestBagOfValues(AttributeDesignator, request);
 
+                                    int numberOfMatch = 0;
+
                                     if (Attributes.Count == 0)
                                     {
                                         // bag of values je prazan, provera atributa MustBePresented
                                         if (AttributeDesignator.MustBePresent)
                                         {
                                             // TODO zahteva dobavljanje atributa od PIP
-                                            numberOfIndeterminateMatch++;
+                                            Attributes = ch.RequestForEnvironmentAttribute(AttributeDesignator);
+
+                                            // ako PIP ne vrati atribut - zbog true vrednosti MustBePresented
+                                            if (Attributes.Count == 0)
+                                            {
+                                                numberOfIndeterminateMatch++;
+                                                continue;
+                                            }
                                         }
-                                        continue;
                                     }
                                     string attributeValue = string.Empty;
 
@@ -68,14 +78,18 @@ namespace PolicyDecisionPoint.XAML_Common
                                             XmlNode node = attrValue.Any[0];
                                             attributeValue = node.Value;
                                         }
+                                        string value = AttributeValue.Any[0].Value.ToString();
+
+                                        // evaluacija prema funkciji definisanoj MatchId atributom
+                                        bool decision = MatchFunctions[Match.MatchId].CheckIfMatch(ref value, ref attributeValue);
+
+                                        if (decision)
+                                        {
+                                            numberOfMatch++;
+                                        }
                                     }
 
-                                    string value = AttributeValue.Any[0].Value.ToString();
-
-                                    // evaluacija prema funkciji definisanoj MatchId atributom
-                                    bool decision = MatchFunctions[Match.MatchId].CheckIfMatch(ref value, ref attributeValue);
-
-                                    if (!decision)
+                                    if (numberOfMatch == 0)
                                     {
                                         numberOfFalseMatch++;
                                     }

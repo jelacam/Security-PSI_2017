@@ -12,16 +12,22 @@ namespace PolicyInformationPoint
 
         public PipService()
         {
-            GetEnvironmentAttribute[XacmlEnvironment.CURRENT_TIME] = new CurrentTime();
+            GetEnvironmentAttribute[XacmlEnvironment.CURRENT_TIME_ID] = new CurrentTime();
+            GetEnvironmentAttribute[XacmlEnvironment.CURRENT_LOCATION_ID] = new CurrentLocation();
         }
 
-        public DomainAttribute RequestEnvironmentAttribute(string AttrType)
+        public DomainAttribute RequestEnvironmentAttribute(string AttributeId)
         {
             DomainAttribute DomainAttr = null;
 
-            DomainAttr = GetEnvironmentAttribute[AttrType].RequestForEnvironmentAttributes();
-
-            Console.WriteLine("PIP - Request for environment attribute - current-time");
+            try
+            {
+                DomainAttr = GetEnvironmentAttribute[AttributeId].RequestForEnvironmentAttributes();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Request environment attribute error - Message: {0}", e.Message);
+            }
 
             return DomainAttr;
         }

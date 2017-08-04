@@ -14,21 +14,19 @@ namespace PolicyDecisionPoint
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     public class ContextHandler : IContextHandler
     {
-       /// <summary>
-       ///  Formira XACML zahtev i salje ga PDP komponenti.
-       ///  Iz dobijenog XACML odgovora izdvaja samo odluku.
-       /// </summary>
-       /// <param name="DomainAttributes"></param>
-       /// <returns></returns>
+        /// <summary>
+        ///  Formira XACML zahtev i salje ga PDP komponenti.
+        ///  Iz dobijenog XACML odgovora izdvaja samo odluku.
+        /// </summary>
+        /// <param name="DomainAttributes"></param>
+        /// <returns></returns>
         public DecisionType CheckAccess(Dictionary<string, List<DomainAttribute>> DomainAttributes)
         {
-           
             RequestType request = CreateXacmlRequest(DomainAttributes);
 
             ResponseType response = PdpService.Evaluate(request);
 
             ResultType[] result = response.Result;
-            
 
             return result[0].Decision;
         }
@@ -50,17 +48,13 @@ namespace PolicyDecisionPoint
                 AttributesType Attributes = new AttributesType();
                 Attributes.Category = kvp.Key;
 
-        
                 Attributes.Attribute = new AttributeType[kvp.Value.Count];
                 int index = 0;
 
                 foreach (DomainAttribute attr in kvp.Value)
                 {
                     AttributeType AttrType = new AttributeType();
-                  
-
                     AttrType = CreateXacmlAttribute(attr);
-
                     Attributes.Attribute[index++] = AttrType;
                 }
 
@@ -78,7 +72,6 @@ namespace PolicyDecisionPoint
         public List<AttributeType> RequestForEnvironmentAttribute(AttributeDesignatorType attributeDesignator)
         {
             List<AttributeType> RequestedAttributes = new List<AttributeType>(3);
-
 
             /// zahteva od PIP komponente atribute okruzenja
             NetTcpBinding binding = new NetTcpBinding();
@@ -99,7 +92,6 @@ namespace PolicyDecisionPoint
 
             RequestedAttributes.Add(XacmlAttribute);
             return RequestedAttributes;
-
         }
 
         /// <summary>

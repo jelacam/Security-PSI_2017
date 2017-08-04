@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace PolicyInformationPoint
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             NetTcpBinding binding = new NetTcpBinding();
             binding.CloseTimeout = new TimeSpan(0, 10, 0);
@@ -26,14 +26,11 @@ namespace PolicyInformationPoint
             host.Description.Behaviors.Remove(typeof(ServiceDebugBehavior));
             host.Description.Behaviors.Add(new ServiceDebugBehavior() { IncludeExceptionDetailInFaults = true });
 
-            
-
-
             try
             {
                 host.Open();
-                Console.WriteLine("PipService is opened. Press <enter> to finish ... ");
-                Console.ReadLine();
+                Console.WriteLine("PipService is opened. Press <Q> to finish ... ");
+                Console.ReadKey();
                 host.Close();
             }
             catch (Exception e)

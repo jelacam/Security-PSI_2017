@@ -12,36 +12,40 @@ using System.Xml.Serialization;
 using System.IdentityModel.Claims;
 using System.Threading;
 using System.Security.Principal;
-
+using System.ServiceModel.Channels;
+using System.Net;
+using System.Xml;
 
 namespace PolicyEnforcementPoint
 {
-
     public class PepAuthorizationManager : ServiceAuthorizationManager
     {
+        public object locker = new object();
+
         protected override bool CheckAccessCore(OperationContext operationContext)
         {
-            // System.IdentityModel.Policy.AuthorizationContext authContext = operationContext.ServiceSecurityContext.AuthorizationContext;
-            //ClaimsPrincipal currentClaimsPrincipal = Thread.CurrentPrincipal as ClaimsPrincipal;
+            IPrincipal principal = operationContext.ServiceSecurityContext.AuthorizationContext.Properties["Principal"] as IPrincipal;
 
-            //System.Security.Claims.AuthorizationContext authzContext = OperationContext.Current.RequestContext.
-            //IIdentity indentity = operationContext.ServiceSecurityContext.AuthorizationContext.Properties["Identities"] as IIdentity;
+            CustomPrincipal.CustomPrincipal customPrincipal = principal as CustomPrincipal.CustomPrincipal;
 
+            //lock (locker)
+            //{
+            //    IContractCallback callback = null;
+            //    callback = OperationContext.Current.GetCallbackChannel<IContractCallback>();
+            //    string test = callback.RequestClientIpAddress();
+            //}
+            var context = OperationContext.Current;
+            var mp = context.IncomingMessageProperties;
+            var propName = RemoteEndpointMessageProperty.Name;
+            var prop = (RemoteEndpointMessageProperty)mp[propName];
+            string remoteIP = prop.Address;
 
-
-            //var cc = operationContext.ServiceSecurityContext.AuthorizationContext.ClaimSets;
-
-            string Subject = operationContext.ServiceSecurityContext.PrimaryIdentity.Name.Split('\\')[1];
-
+            using (var objClient = new System.Net.WebClient())
+            {
+                var strFile = objClient.DownloadString("http://freegeoip.net/xml/93.86.238.5");
+            }
 
             string[] Attributes = operationContext.RequestContext.RequestMessage.Headers.Action.Split('_');
-
-            //WindowsIdentity identity = operationContext.ClaimsPrincipal.Identity as WindowsIdentity;
-            //foreach(IdentityReference group in identity.Groups)
-            //{
-            //    SecurityIdentifier sid = group.Translate(typeof(SecurityIdentifier)) as SecurityIdentifier;
-            //    var name = sid.Translate(typeof(NTAccount));
-            //}
 
             // service binding i adress
             NetTcpBinding binding = new NetTcpBinding();
@@ -54,9 +58,11 @@ namespace PolicyEnforcementPoint
             DecisionType decision = DecisionType.Indeterminate;
 
             Dictionary<string, List<DomainAttribute>> DomainAttributes = new Dictionary<string, List<DomainAttribute>>();
-            DomainAttributes[Contracts.XacmlAction.CATEGORY] = new List<DomainAttribute>()
+
+            // dodavanje atributa koji definise akciju
+            DomainAttributes[XacmlAction.CATEGORY] = new List<DomainAttribute>()
             {
-                new DomainAttribute() { AttributeId = Contracts.XacmlAction.ID, DataType = XacmlDataTypes.STRING, Value = Attributes[0].ToLower() }
+                new DomainAttribute() { AttributeId = XacmlAction.ID, DataType = XacmlDataTypes.STRING, Value = Attributes[0].ToLower() }
             };
 
             DomainAttributes[XacmlResource.CATEGORY] = new List<DomainAttribute>()
@@ -64,37 +70,34 @@ namespace PolicyEnforcementPoint
                 new DomainAttribute() { AttributeId = XacmlResource.ID, DataType = XacmlDataTypes.STRING, Value = Attributes[1].ToLower() }
             };
 
-            DomainAttributes[XacmlSubject.CATEGORY] = new List<DomainAttribute>()
+            // setovanje lokacije u PEP
+            //DomainAttributes[XacmlSubject.CATEGORY] = new List<DomainAttribute>()
+            //{
+            //    //new DomainAttribute() { AttributeId = XacmlSubject.ID, DataType = XacmlDataTypes.STRING, Value = Subject },
+            //    new DomainAttribute() { AttributeId = XacmlSubject.LOCATION, DataType = XacmlDataTypes.STRING, Value = "Novi Sad" }
+            //};
+
+            DomainAttributes[XacmlSubject.CATEGORY] = new List<DomainAttribute>();
+            foreach (string group in customPrincipal.Groups)
             {
-                new DomainAttribute() { AttributeId = XacmlSubject.ID, DataType = XacmlDataTypes.STRING, Value = Subject },
-                new DomainAttribute() { AttributeId = XacmlSubject.LOCATION, DataType = XacmlDataTypes.STRING, Value = "Novi Sad"}
-            };
-
-
-
+                DomainAttributes[XacmlSubject.CATEGORY].Add(new DomainAttribute() { AttributeId = XacmlSubject.ROLE, DataType = XacmlDataTypes.STRING, Value = group });
+            }
 
             using (ContextProxy proxy = new ContextProxy(binding, new EndpointAddress(new Uri(address))))
             {
-               decision = proxy.CheckAccess(DomainAttributes);
+                decision = proxy.CheckAccess(DomainAttributes);
             }
 
-           
             Console.WriteLine("PEP response: {0}", decision.ToString());
 
             if (decision == DecisionType.Permit)
             {
-               
                 return true;
             }
             else
             {
                 return false;
             }
-
-            
-
-
-
 
             //Console.ReadKey();
         }
