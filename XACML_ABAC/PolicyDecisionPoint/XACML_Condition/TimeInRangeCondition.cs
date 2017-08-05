@@ -47,6 +47,7 @@ namespace PolicyDecisionPoint.XACML_Condition
             string upperBoundTime = uppItemValueAny.Value as string;
 
             // konverzija vremena - daylight saving time - +1 na vremensku zonu tako da je srbija na +2 po letnjem racunanju vremena
+            // preporuka da se vreme definise u UTC formatu
             DateTime lowerBoundTimeValue = DateTime.Parse(lowerBoundTime, System.Globalization.CultureInfo.CurrentCulture);
             DateTime upperBoundTimeValue = DateTime.Parse(upperBoundTime, System.Globalization.CultureInfo.CurrentCulture);
 

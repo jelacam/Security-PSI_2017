@@ -14,11 +14,11 @@ namespace Client
             factory = CreateChannel();
         }
 
-        public string AccessDenied()
+        public string EditRemainingCourses()
         {
             try
             {
-                return factory.AccessDenied();
+                return factory.EditRemainingCourses();
             }
             catch (Exception e)
             {
@@ -27,11 +27,11 @@ namespace Client
             }
         }
 
-        public string AccessPermit()
+        public string ViewRemainingCourses()
         {
             try
             {
-                return factory.AccessPermit();
+                return factory.ViewRemainingCourses();
             }
             catch (Exception e)
             {
@@ -40,11 +40,11 @@ namespace Client
             }
         }
 
-        public string ExamRegistration()
+        public string RegisterExam()
         {
             try
             {
-                return factory.ExamRegistration();
+                return factory.RegisterExam();
             }
             catch (Exception e)
             {

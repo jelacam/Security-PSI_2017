@@ -16,20 +16,20 @@ namespace Service
     //                 UseSynchronizationContext = false)]
     public class WcfService : IContract
     {
-        public string AccessDenied()
+        public string EditRemainingCourses()
         {
             Console.WriteLine("Test method for access denied. [Student try to edit remaining courses]");
 
             return "Edit student remaining courses...";
         }
 
-        public string AccessPermit()
+        public string ViewRemainingCourses()
         {
             Console.WriteLine("Test method for access permit. [Student try to view remaining courses]");
             return "Student remaining courses...";
         }
 
-        public string ExamRegistration()
+        public string RegisterExam()
         {
             Console.WriteLine("Test method for exam registration. [Student try to register an exam]");
             return "Student exam registration...";

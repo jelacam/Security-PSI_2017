@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextProxy.cs" />
-    <Compile Include="CustomPrincipal\CustomAuthorization.cs" />
+    <Compile Include="CustomPrincipal\AuthzPolicy.cs" />
     <Compile Include="CustomPrincipal\CustomPrincipal.cs" />
     <Compile Include="PdpProxy.cs" />
     <Compile Include="PepAuthorizationManager.cs" />

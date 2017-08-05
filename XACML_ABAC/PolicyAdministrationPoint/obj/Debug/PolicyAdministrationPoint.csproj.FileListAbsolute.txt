@@ -5,4 +5,3 @@ C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyAdmini
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyAdministrationPoint\bin\Debug\Contracts.pdb
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyAdministrationPoint\obj\Debug\PolicyAdministrationPoint.exe
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyAdministrationPoint\obj\Debug\PolicyAdministrationPoint.pdb
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\PolicyAdministrationPoint\obj\Debug\PolicyAdministrationPoint.csprojResolveAssemblyReference.cache

@@ -37,7 +37,7 @@ namespace Service
 
             // podesavanje koriscenja custom polisa
             List<IAuthorizationPolicy> policies = new List<IAuthorizationPolicy>();
-            policies.Add(new CustomAuthorization());
+            policies.Add(new AuthzPolicy());
             host.Authorization.ExternalAuthorizationPolicies = policies.AsReadOnly();
 
             //host.Authorization.PrincipalPermissionMode = PrincipalPermissionMode.Custom;

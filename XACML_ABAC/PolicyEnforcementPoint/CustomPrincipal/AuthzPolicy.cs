@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PolicyEnforcementPoint.CustomPrincipal
 {
-    public class CustomAuthorization : IAuthorizationPolicy
+    public class AuthzPolicy : IAuthorizationPolicy
     {
         private string id;
         private object locker = new object();

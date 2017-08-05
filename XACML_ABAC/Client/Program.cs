@@ -23,17 +23,17 @@ namespace Client
             using (ClientProxy proxy = new ClientProxy(binding, new EndpointAddress(new Uri(address))))
             {
                 Console.WriteLine("\nRequest for editing student remaining courses.");
-                string ret = proxy.AccessDenied();
+                string ret = proxy.EditRemainingCourses();
                 Console.WriteLine(ret);
                 // Console.ReadKey();
 
                 Console.WriteLine("\nRequest for student remaining courses.");
-                ret = proxy.AccessPermit();
+                ret = proxy.ViewRemainingCourses();
                 Console.WriteLine(ret);
                 //Console.ReadKey();
 
                 Console.WriteLine("\nRequest for exam registration.");
-                ret = proxy.ExamRegistration();
+                ret = proxy.RegisterExam();
                 Console.WriteLine(ret);
             }
 

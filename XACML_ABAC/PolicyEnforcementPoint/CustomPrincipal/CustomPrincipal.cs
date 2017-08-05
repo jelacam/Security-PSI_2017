@@ -10,7 +10,6 @@ namespace PolicyEnforcementPoint.CustomPrincipal
     public class CustomPrincipal : IPrincipal
     {
         private WindowsIdentity winIdentity;
-        private string location;
 
         private HashSet<string> groups = new HashSet<string>();
 
