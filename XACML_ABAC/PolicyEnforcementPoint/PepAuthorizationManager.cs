@@ -60,14 +60,14 @@ namespace PolicyEnforcementPoint
             Dictionary<string, List<DomainAttribute>> DomainAttributes = new Dictionary<string, List<DomainAttribute>>();
 
             // dodavanje atributa koji definise akciju
-            DomainAttributes[XacmlAction.CATEGORY] = new List<DomainAttribute>()
+            DomainAttributes["action"] = new List<DomainAttribute>()
             {
-                new DomainAttribute() { AttributeId = XacmlAction.ID, DataType = XacmlDataTypes.STRING, Value = Attributes[0].ToLower() }
+                new DomainAttribute() { AttributeId = "action-id", DataType = "string", Value = Attributes[0].ToLower() }
             };
 
-            DomainAttributes[XacmlResource.CATEGORY] = new List<DomainAttribute>()
+            DomainAttributes["resource"] = new List<DomainAttribute>()
             {
-                new DomainAttribute() { AttributeId = XacmlResource.ID, DataType = XacmlDataTypes.STRING, Value = Attributes[1].ToLower() }
+                new DomainAttribute() { AttributeId = "resource-id", DataType = "string", Value = Attributes[1].ToLower() }
             };
 
             // setovanje lokacije u PEP
@@ -77,10 +77,10 @@ namespace PolicyEnforcementPoint
             //    new DomainAttribute() { AttributeId = XacmlSubject.LOCATION, DataType = XacmlDataTypes.STRING, Value = "Novi Sad" }
             //};
 
-            DomainAttributes[XacmlSubject.CATEGORY] = new List<DomainAttribute>();
+            DomainAttributes["subject"] = new List<DomainAttribute>();
             foreach (string group in customPrincipal.Groups)
             {
-                DomainAttributes[XacmlSubject.CATEGORY].Add(new DomainAttribute() { AttributeId = XacmlSubject.ROLE, DataType = XacmlDataTypes.STRING, Value = group });
+                DomainAttributes["subject"].Add(new DomainAttribute() { AttributeId = "subject-role", DataType = "string", Value = group });
             }
 
             using (ContextProxy proxy = new ContextProxy(binding, new EndpointAddress(new Uri(address))))

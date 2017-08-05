@@ -38,7 +38,7 @@
         /// </summary>
         public const string ID = "urn:oasis:names:tc:xacml:1.0:subject:subject-id";
 
-        public const string LOCATION = "urn:oasis:names:tc:xacml:1.0:subject:subject-location";
+        //public const string LOCATION = "urn:oasis:names:tc:xacml:1.0:subject:subject-location";
 
         public const string ROLE = "urn:oasis:names:tc:xacml:1.0:subject:subject-role";
     }

@@ -19,9 +19,9 @@ namespace PolicyInformationPoint.Environment
             string location = "Novi Sad";
 
             DomainAttribute locationAttribute = new DomainAttribute();
-            locationAttribute.AttributeId = XacmlEnvironment.CURRENT_LOCATION_ID;
-            locationAttribute.Category = XacmlEnvironment.CATEGORY;
-            locationAttribute.DataType = XacmlDataTypes.STRING;
+            locationAttribute.AttributeId = "location";
+            locationAttribute.Category = "environment";
+            locationAttribute.DataType = "string";
             locationAttribute.Value = location;
 
             return locationAttribute;

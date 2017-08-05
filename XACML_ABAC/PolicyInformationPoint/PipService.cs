@@ -22,7 +22,13 @@ namespace PolicyInformationPoint
 
             try
             {
-                DomainAttr = GetEnvironmentAttribute[AttributeId].RequestForEnvironmentAttributes();
+                EnvironmentAttributes reference = null;
+                if (!GetEnvironmentAttribute.TryGetValue(AttributeId, out reference))
+                {
+                    return new DomainAttribute();
+                }
+
+                DomainAttr = reference.RequestForEnvironmentAttributes();
             }
             catch (Exception e)
             {

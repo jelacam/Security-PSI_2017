@@ -1,5 +1,6 @@
 ﻿using Contracts;
 using Contracts.Contracts;
+using PolicyDecisionPoint.XAML_Common;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -46,7 +47,16 @@ namespace PolicyDecisionPoint
             foreach (KeyValuePair<string, List<DomainAttribute>> kvp in DomainAttributes)
             {
                 AttributesType Attributes = new AttributesType();
-                Attributes.Category = kvp.Key;
+
+                /// provera da li kategorije ima u dictionary, ako nema kreira se Xacml atribut sa vrednosti
+                /// kategorije iz domenskog oblika
+                string category = null;
+                if (!AttributeConversionManager.CategoryConversion.TryGetValue(kvp.Key, out category))
+                {
+                    category = kvp.Key;
+                }
+
+                Attributes.Category = category;
 
                 Attributes.Attribute = new AttributeType[kvp.Value.Count];
                 int index = 0;
@@ -101,12 +111,31 @@ namespace PolicyDecisionPoint
         /// <returns></returns>
         private AttributeType CreateXacmlAttribute(DomainAttribute DomainAttribute)
         {
+            if (DomainAttribute.AttributeId == null || DomainAttribute.DataType == null)
+            {
+                return null;
+            }
+
             AttributeType AttrType = new AttributeType();
             AttrType.IncludeInResult = false;
-            AttrType.AttributeId = DomainAttribute.AttributeId;
+
+            string id = null;
+            if (!AttributeConversionManager.IdConversion.TryGetValue(DomainAttribute.AttributeId, out id))
+            {
+                id = DomainAttribute.AttributeId;
+            }
+
+            AttrType.AttributeId = id;
 
             AttributeValueType AttrValue = new AttributeValueType();
-            AttrValue.DataType = DomainAttribute.DataType;
+
+            string dataType = null;
+            if (!AttributeConversionManager.DataTypeConversion.TryGetValue(DomainAttribute.DataType, out dataType))
+            {
+                dataType = DomainAttribute.DataType;
+            }
+
+            AttrValue.DataType = dataType;
 
             XmlDocument doc = new XmlDocument();
             XmlNode[] nodes = new XmlNode[1];

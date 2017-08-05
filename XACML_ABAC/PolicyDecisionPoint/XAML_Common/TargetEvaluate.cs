@@ -61,6 +61,19 @@ namespace PolicyDecisionPoint.XAML_Common
                                             Attributes = ch.RequestForEnvironmentAttribute(AttributeDesignator);
 
                                             // ako PIP ne vrati atribut - zbog true vrednosti MustBePresented
+                                            if (Attributes != null)
+                                            {
+                                                if (Attributes[0] == null)
+                                                {
+                                                    numberOfIndeterminateMatch++;
+                                                    continue;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                numberOfIndeterminateMatch++;
+                                                continue;
+                                            }
                                             if (Attributes.Count == 0)
                                             {
                                                 numberOfIndeterminateMatch++;
