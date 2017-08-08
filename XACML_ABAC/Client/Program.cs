@@ -19,24 +19,42 @@ namespace Client
             binding.SendTimeout = new TimeSpan(0, 10, 0);
 
             string address = "net.tcp://localhost:9999/WcfService";
+            string authAddress = "net.tcp://localhost:5000/AuthenticationService";
 
-            using (ClientProxy proxy = new ClientProxy(binding, new EndpointAddress(new Uri(address))))
+            bool isAuthenticated = false;
+            string userId = string.Empty;
+
+            using (AuthProxy authProxy = new AuthProxy(binding, new EndpointAddress(new Uri(authAddress))))
             {
-                Console.WriteLine("\nRequest for editing student remaining courses.");
-                string ret = proxy.EditRemainingCourses();
-                Console.WriteLine(ret);
-                // Console.ReadKey();
-
-                Console.WriteLine("\nRequest for student remaining courses.");
-                ret = proxy.ViewRemainingCourses();
-                Console.WriteLine(ret);
-                //Console.ReadKey();
-
-                Console.WriteLine("\nRequest for exam registration.");
-                ret = proxy.RegisterExam();
-                Console.WriteLine(ret);
+                isAuthenticated = authProxy.IsAuthenticated();
+                if (isAuthenticated)
+                {
+                    userId = authProxy.AuthenticatedUserId();
+                    Console.WriteLine("User Location: ");
+                    string location = Console.ReadLine();
+                    authProxy.SetLocation(userId, location);
+                }
             }
 
+            if (isAuthenticated)
+            {
+                using (ClientProxy proxy = new ClientProxy(binding, new EndpointAddress(new Uri(address))))
+                {
+                    Console.WriteLine("\nRequest for editing student remaining courses.");
+                    string ret = proxy.EditRemainingCourses();
+                    Console.WriteLine(ret);
+                    // Console.ReadKey();
+
+                    Console.WriteLine("\nRequest for student remaining courses.");
+                    ret = proxy.ViewRemainingCourses();
+                    Console.WriteLine(ret);
+                    //Console.ReadKey();
+
+                    Console.WriteLine("\nRequest for exam registration.");
+                    ret = proxy.RegisterExam();
+                    Console.WriteLine(ret);
+                }
+            }
             Console.ReadKey();
         }
     }

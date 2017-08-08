@@ -20,30 +20,13 @@ namespace PolicyEnforcementPoint
 {
     public class PepAuthorizationManager : ServiceAuthorizationManager
     {
-        public object locker = new object();
-
         protected override bool CheckAccessCore(OperationContext operationContext)
         {
             IPrincipal principal = operationContext.ServiceSecurityContext.AuthorizationContext.Properties["Principal"] as IPrincipal;
 
             CustomPrincipal.CustomPrincipal customPrincipal = principal as CustomPrincipal.CustomPrincipal;
 
-            //lock (locker)
-            //{
-            //    IContractCallback callback = null;
-            //    callback = OperationContext.Current.GetCallbackChannel<IContractCallback>();
-            //    string test = callback.RequestClientIpAddress();
-            //}
-            var context = OperationContext.Current;
-            var mp = context.IncomingMessageProperties;
-            var propName = RemoteEndpointMessageProperty.Name;
-            var prop = (RemoteEndpointMessageProperty)mp[propName];
-            string remoteIP = prop.Address;
-
-            using (var objClient = new System.Net.WebClient())
-            {
-                var strFile = objClient.DownloadString("http://freegeoip.net/xml/93.86.238.5");
-            }
+            string subject = customPrincipal.Identity.Name.Split('\\')[1];
 
             string[] Attributes = operationContext.RequestContext.RequestMessage.Headers.Action.Split('_');
 
@@ -71,17 +54,16 @@ namespace PolicyEnforcementPoint
             };
 
             // setovanje lokacije u PEP
-            //DomainAttributes[XacmlSubject.CATEGORY] = new List<DomainAttribute>()
-            //{
-            //    //new DomainAttribute() { AttributeId = XacmlSubject.ID, DataType = XacmlDataTypes.STRING, Value = Subject },
-            //    new DomainAttribute() { AttributeId = XacmlSubject.LOCATION, DataType = XacmlDataTypes.STRING, Value = "Novi Sad" }
-            //};
-
-            DomainAttributes["subject"] = new List<DomainAttribute>();
-            foreach (string group in customPrincipal.Groups)
+            DomainAttributes["subject"] = new List<DomainAttribute>()
             {
-                DomainAttributes["subject"].Add(new DomainAttribute() { AttributeId = "subject-role", DataType = "string", Value = group });
-            }
+                new DomainAttribute() { AttributeId = "subject-id", DataType = "string", Value = subject },
+            };
+
+            //DomainAttributes["subject"] = new List<DomainAttribute>();
+            //foreach (string group in customPrincipal.Groups)
+            //{
+            //    DomainAttributes["subject"].Add(new DomainAttribute() { AttributeId = "subject-role", DataType = "string", Value = group });
+            //}
 
             using (ContextProxy proxy = new ContextProxy(binding, new EndpointAddress(new Uri(address))))
             {
@@ -98,8 +80,6 @@ namespace PolicyEnforcementPoint
             {
                 return false;
             }
-
-            //Console.ReadKey();
         }
     }
 }

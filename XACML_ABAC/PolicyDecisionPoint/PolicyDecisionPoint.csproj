@@ -65,13 +65,14 @@
     <Compile Include="XAML_Common\ConditionEvaluate.cs" />
     <Compile Include="XAML_Common\Enums.cs" />
     <Compile Include="XAML_Common\PolicyEvaluateManager.cs" />
+    <Compile Include="XAML_Common\SubjectIdResolver.cs" />
     <Compile Include="XAML_Common\TargetEvaluate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contract\Common.csproj">
+    <ProjectReference Include="..\Common\Common.csproj">
       <Project>{88f60a77-4d34-419d-90f3-8538cf815ef5}</Project>
       <Name>Common</Name>
     </ProjectReference>

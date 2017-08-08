@@ -16,8 +16,6 @@ namespace Service
     {
         private static void Main(string[] args)
         {
-            var time = DateTime.Now;
-
             NetTcpBinding binding = new NetTcpBinding();
             binding.CloseTimeout = new TimeSpan(0, 10, 0);
             binding.OpenTimeout = new TimeSpan(0, 10, 0);

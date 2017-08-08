@@ -104,6 +104,34 @@ namespace PolicyDecisionPoint
             return RequestedAttributes;
         }
 
+        public List<AttributeType> RequestForSubjectAttribute(AttributeDesignatorType attributeDesignator, string subjectId)
+        {
+            List<AttributeType> RequestedAttributes = new List<AttributeType>(3);
+
+            /// zahteva od PIP komponente atribute okruzenja
+            NetTcpBinding binding = new NetTcpBinding();
+            binding.CloseTimeout = new TimeSpan(0, 10, 0);
+            binding.OpenTimeout = new TimeSpan(0, 10, 0);
+            binding.ReceiveTimeout = new TimeSpan(0, 10, 0);
+            binding.SendTimeout = new TimeSpan(0, 10, 0);
+            string address = "net.tcp://localhost:7000/PipService";
+
+            List<DomainAttribute> SubjecttAttributes = new List<DomainAttribute>();
+
+            using (PipProxy proxy = new PipProxy(binding, new EndpointAddress(address)))
+            {
+                SubjecttAttributes = proxy.RequestSubjectAttributes(attributeDesignator.AttributeId, subjectId);
+            }
+
+            foreach (DomainAttribute attribute in SubjecttAttributes)
+            {
+                AttributeType XacmlAttribute = CreateXacmlAttribute(attribute);
+                RequestedAttributes.Add(XacmlAttribute);
+            }
+
+            return RequestedAttributes;
+        }
+
         /// <summary>
         ///     Kreira XACML atribut na osnovu domenskog atributa
         /// </summary>

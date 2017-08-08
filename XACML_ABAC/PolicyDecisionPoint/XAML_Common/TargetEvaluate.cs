@@ -58,7 +58,22 @@ namespace PolicyDecisionPoint.XAML_Common
                                         if (AttributeDesignator.MustBePresent)
                                         {
                                             // TODO zahteva dobavljanje atributa od PIP
-                                            Attributes = ch.RequestForEnvironmentAttribute(AttributeDesignator);
+                                            if (AttributeDesignator.Category.Equals(XacmlSubject.CATEGORY))
+                                            {
+                                                string subjectId = SubjectIdResolver.SubjectId(request);
+                                                if (!(subjectId == null))
+                                                {
+                                                    Attributes = ch.RequestForSubjectAttribute(AttributeDesignator, subjectId);
+                                                }
+                                                else
+                                                {
+                                                    Attributes = null;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Attributes = ch.RequestForEnvironmentAttribute(AttributeDesignator);
+                                            }
 
                                             // ako PIP ne vrati atribut - zbog true vrednosti MustBePresented
                                             if (Attributes != null)

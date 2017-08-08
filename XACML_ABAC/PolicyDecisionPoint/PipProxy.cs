@@ -18,11 +18,25 @@ namespace PolicyDecisionPoint
         {
             factory = CreateChannel();
         }
+
         public DomainAttribute RequestEnvironmentAttribute(string AttrType)
         {
             try
             {
                 return factory.RequestEnvironmentAttribute(AttrType);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("PipProxy error: Message: {0}", e.Message);
+                return null;
+            }
+        }
+
+        public List<DomainAttribute> RequestSubjectAttributes(string AttrType, string subjectId)
+        {
+            try
+            {
+                return factory.RequestSubjectAttributes(AttrType, subjectId);
             }
             catch (Exception e)
             {

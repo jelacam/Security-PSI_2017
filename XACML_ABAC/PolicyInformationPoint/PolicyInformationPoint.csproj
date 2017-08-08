@@ -43,18 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Environment\CurrentLocation.cs" />
     <Compile Include="Environment\CurrentTime.cs" />
     <Compile Include="Environment\EnvironmentAttributes.cs" />
     <Compile Include="PipService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubjectInfProxy.cs" />
+    <Compile Include="Subject\SubjectAttributes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contract\Common.csproj">
+    <ProjectReference Include="..\Common\Common.csproj">
       <Project>{88f60a77-4d34-419d-90f3-8538cf815ef5}</Project>
       <Name>Common</Name>
     </ProjectReference>

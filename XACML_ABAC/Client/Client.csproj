@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthProxy.cs" />
     <Compile Include="ClientProxy.cs" />
     <Compile Include="LocationService.cs" />
     <Compile Include="Program.cs" />
@@ -52,7 +53,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contract\Common.csproj">
+    <ProjectReference Include="..\Common\Common.csproj">
       <Project>{88f60a77-4d34-419d-90f3-8538cf815ef5}</Project>
       <Name>Common</Name>
     </ProjectReference>

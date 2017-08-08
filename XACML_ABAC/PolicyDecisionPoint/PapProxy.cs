@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PolicyDecisionPoint
 {
-    public class PapProxy : ChannelFactory<IPapContract>, IPapContract, IDisposable
+    public class PapProxy : ChannelFactory<IPrpContract>, IPrpContract, IDisposable
     {
-        private IPapContract factory;
+        private IPrpContract factory;
 
         public PapProxy(NetTcpBinding binding, EndpointAddress address)
             : base(binding, address)

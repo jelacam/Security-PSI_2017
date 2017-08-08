@@ -11,8 +11,9 @@ namespace PolicyInformationPoint.Environment
     {
         public override DomainAttribute RequestForEnvironmentAttributes()
         {
-            Console.WriteLine("PIP - Request for environment attribute - current time");
             string value = DateTime.UtcNow.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
+
+            Console.WriteLine("PIP - Request for environment attribute - current time: {0}", value.ToString());
 
             DomainAttribute CurrentTime = new DomainAttribute();
             CurrentTime.Value = value;

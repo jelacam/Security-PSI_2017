@@ -24,7 +24,7 @@ namespace PolicyDecisionPoint.XAML_Common
             {"subject-id", XacmlSubject.ID},
             {"subject-role", XacmlSubject.ROLE},
             {"current-time", XacmlEnvironment.CURRENT_TIME_ID},
-            {"location", XacmlEnvironment.CURRENT_LOCATION_ID}
+            {"location", XacmlSubject.LOCATION}
         };
 
         public static readonly Dictionary<string, string> DataTypeConversion = new Dictionary<string, string>()

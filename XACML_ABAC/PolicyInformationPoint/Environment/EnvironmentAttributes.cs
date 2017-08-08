@@ -9,12 +9,9 @@ namespace PolicyInformationPoint.Environment
 {
     public abstract class EnvironmentAttributes
     {
-
         public virtual DomainAttribute RequestForEnvironmentAttributes()
-        { 
+        {
             return null;
         }
-
-        
     }
 }
