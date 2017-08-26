@@ -1,4 +1,4 @@
-﻿using Contracts.Contracts;
+﻿using Common.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +35,7 @@ namespace PolicyAdministrationPoint
             try
             {
                 host.Open();
-                Console.WriteLine("WcfService is opened. Press <enter> to finish ... ");
+                Console.WriteLine("PRP service is opened. Press <enter> to finish ... ");
                 Console.ReadLine();
                 host.Close();
             }

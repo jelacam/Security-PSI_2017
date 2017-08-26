@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 
-namespace Contracts
+namespace Common
 {
     [DataContract]
     public class DomainAttribute

@@ -1,5 +1,5 @@
-﻿using Contracts;
-using Contracts.Contracts;
+﻿using Common;
+using Common.Contracts;
 using PolicyDecisionPoint.XACML_CombAlg;
 using PolicyDecisionPoint.XAML_Common;
 using System;

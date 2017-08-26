@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
-using Contracts.Contracts;
-using Contracts;
+using Common.Contracts;
+using Common;
 
 namespace PolicyEnforcementPoint
 {

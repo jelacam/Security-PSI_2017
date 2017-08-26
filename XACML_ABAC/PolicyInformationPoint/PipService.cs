@@ -1,5 +1,5 @@
-﻿using Contracts;
-using Contracts.Contracts;
+﻿using Common;
+using Common.Contracts;
 using PolicyInformationPoint.Environment;
 using PolicyInformationPoint.Subject;
 using System;

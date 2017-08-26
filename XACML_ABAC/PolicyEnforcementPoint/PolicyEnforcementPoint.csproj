@@ -43,8 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextProxy.cs" />
-    <Compile Include="CustomPrincipal\AuthzPolicy.cs" />
-    <Compile Include="CustomPrincipal\CustomPrincipal.cs" />
     <Compile Include="PdpProxy.cs" />
     <Compile Include="PepAuthorizationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,6 +51,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{88f60a77-4d34-419d-90f3-8538cf815ef5}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Principal\Principal.csproj">
+      <Project>{4a46f7f9-128e-42d7-b69c-2f69a12ce528}</Project>
+      <Name>Principal</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

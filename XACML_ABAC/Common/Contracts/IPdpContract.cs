@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 
-namespace Contracts
+namespace Common
 {
     [ServiceContract]
     public interface IPdpContract

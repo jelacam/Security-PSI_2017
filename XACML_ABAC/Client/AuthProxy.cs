@@ -1,4 +1,4 @@
-﻿using Contracts.Contracts;
+﻿using Common.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    public class AuthProxy : ChannelFactory<IAuthentication>, IAuthentication, IDisposable
+    public class AuthProxy : ChannelFactory<ISubjectRepository>, ISubjectRepository, IDisposable
     {
-        private IAuthentication factory;
+        private ISubjectRepository factory;
 
         public AuthProxy(NetTcpBinding binding, EndpointAddress address)
             : base(binding, address)

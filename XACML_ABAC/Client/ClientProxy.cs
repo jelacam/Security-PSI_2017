@@ -1,15 +1,15 @@
-﻿using Contracts;
+﻿using Common;
 using System;
 using System.ServiceModel;
 
 namespace Client
 {
-    public class ClientProxy : DuplexChannelFactory<IContract>, IContract, IDisposable
+    public class ClientProxy : ChannelFactory<IContract>, IContract, IDisposable
     {
         private IContract factory;
 
         public ClientProxy(NetTcpBinding binding, EndpointAddress address)
-            : base(new InstanceContext(new LocationService()), binding, address)
+            : base(binding, address)
         {
             factory = CreateChannel();
         }

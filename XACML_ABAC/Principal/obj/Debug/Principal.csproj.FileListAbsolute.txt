@@ -1,0 +1,4 @@
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Principal\bin\Debug\Principal.dll
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Principal\bin\Debug\Principal.pdb
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Principal\obj\Debug\Principal.dll
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Principal\obj\Debug\Principal.pdb

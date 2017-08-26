@@ -7,8 +7,8 @@
     <ProjectGuid>{88F60A77-4D34-419D-90F3-8538CF815EF5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Contracts</RootNamespace>
-    <AssemblyName>Contracts</AssemblyName>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Services" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -43,7 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IAuthentication.cs" />
+    <Compile Include="ABAC_Attributes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ABAC_Attributes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeConfig.cs" />
+    <Compile Include="Contracts\ISubjectRepository.cs" />
     <Compile Include="Contracts\ISubjectInformation.cs" />
     <Compile Include="XACMLConstants.cs" />
     <Compile Include="Contracts\IPrpContract.cs" />
@@ -54,6 +61,12 @@
     <Compile Include="Contracts\IPdpContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XACML_Model\Xacml_xsd.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ABAC_Attributes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ABAC_Attributes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

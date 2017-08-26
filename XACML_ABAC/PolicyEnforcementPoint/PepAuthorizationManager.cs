@@ -1,20 +1,9 @@
-﻿using Contracts;
+﻿using Common;
+using Principal.CustomPrincipal;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Policy;
-using System.IO;
-using System.Linq;
-using System.Security.Claims;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-using System.IdentityModel.Claims;
-using System.Threading;
 using System.Security.Principal;
-using System.ServiceModel.Channels;
-using System.Net;
-using System.Xml;
+using System.ServiceModel;
 
 namespace PolicyEnforcementPoint
 {
@@ -24,7 +13,7 @@ namespace PolicyEnforcementPoint
         {
             IPrincipal principal = operationContext.ServiceSecurityContext.AuthorizationContext.Properties["Principal"] as IPrincipal;
 
-            CustomPrincipal.CustomPrincipal customPrincipal = principal as CustomPrincipal.CustomPrincipal;
+            CustomPrincipal customPrincipal = principal as CustomPrincipal;
 
             string subject = customPrincipal.Identity.Name.Split('\\')[1];
 
@@ -45,12 +34,12 @@ namespace PolicyEnforcementPoint
             // dodavanje atributa koji definise akciju
             DomainAttributes["action"] = new List<DomainAttribute>()
             {
-                new DomainAttribute() { AttributeId = "action-id", DataType = "string", Value = Attributes[0].ToLower() }
+                new DomainAttribute() { AttributeId = "action-id", DataType = "string", Value = AttributeConfig.GetValue(Attributes[0].ToLower().ToString()) }
             };
 
             DomainAttributes["resource"] = new List<DomainAttribute>()
             {
-                new DomainAttribute() { AttributeId = "resource-id", DataType = "string", Value = Attributes[1].ToLower() }
+                new DomainAttribute() { AttributeId = "resource-id", DataType = "string", Value = AttributeConfig.GetValue(Attributes[1].ToLower().ToString()) }
             };
 
             // setovanje lokacije u PEP

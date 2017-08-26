@@ -7,8 +7,9 @@ C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Contract\bin
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Contract\obj\Debug\Contracts.dll
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Contract\obj\Debug\Contracts.pdb
 C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Contract\obj\Debug\Common.csprojResolveAssemblyReference.cache
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Common\bin\Debug\Contracts.dll
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Common\bin\Debug\Contracts.pdb
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Common\obj\Debug\Contracts.dll
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Common\obj\Debug\Contracts.pdb
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Common\bin\Debug\Common.dll
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Common\bin\Debug\Common.pdb
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Common\obj\Debug\Common.ABAC_Attributes.resources
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Common\obj\Debug\Common.csproj.GenerateResource.Cache
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Common\obj\Debug\Common.dll
+C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\Common\obj\Debug\Common.pdb

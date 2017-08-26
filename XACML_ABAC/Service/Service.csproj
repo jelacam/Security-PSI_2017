@@ -66,6 +66,10 @@
       <Project>{331B3C5F-767B-43D4-9D77-91450B241786}</Project>
       <Name>PolicyEnforcementPoint</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Principal\Principal.csproj">
+      <Project>{4a46f7f9-128e-42d7-b69c-2f69a12ce528}</Project>
+      <Name>Principal</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

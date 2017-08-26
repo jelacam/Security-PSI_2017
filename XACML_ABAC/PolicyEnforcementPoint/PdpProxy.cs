@@ -1,4 +1,4 @@
-﻿using Contracts;
+﻿using Common;
 using System;
 using System.ServiceModel;
 

@@ -4,7 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
-using Contracts;
+using Common;
+using System.Net;
+using System.Xml.Linq;
+using System.Device.Location;
+using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Client
 {
@@ -12,6 +17,9 @@ namespace Client
     {
         private static void Main(string[] args)
         {
+            CLocation myLocation = new CLocation();
+            myLocation.GetLocationDataEvent();
+
             NetTcpBinding binding = new NetTcpBinding();
             binding.CloseTimeout = new TimeSpan(0, 10, 0);
             binding.OpenTimeout = new TimeSpan(0, 10, 0);
@@ -19,20 +27,21 @@ namespace Client
             binding.SendTimeout = new TimeSpan(0, 10, 0);
 
             string address = "net.tcp://localhost:9999/WcfService";
-            string authAddress = "net.tcp://localhost:5000/AuthenticationService";
+            string administrationAddress = "net.tcp://localhost:5000/SubjectAdministrationService";
 
             bool isAuthenticated = false;
             string userId = string.Empty;
 
-            using (AuthProxy authProxy = new AuthProxy(binding, new EndpointAddress(new Uri(authAddress))))
+            using (AuthProxy authProxy = new AuthProxy(binding, new EndpointAddress(new Uri(administrationAddress))))
             {
                 isAuthenticated = authProxy.IsAuthenticated();
                 if (isAuthenticated)
                 {
                     userId = authProxy.AuthenticatedUserId();
-                    Console.WriteLine("User Location: ");
-                    string location = Console.ReadLine();
-                    authProxy.SetLocation(userId, location);
+                    //Console.WriteLine("User Location: ");
+                    //string location = Console.ReadLine();
+                    Console.WriteLine("Location: " + CLocation.location);
+                    authProxy.SetLocation(userId, CLocation.location);
                 }
             }
 

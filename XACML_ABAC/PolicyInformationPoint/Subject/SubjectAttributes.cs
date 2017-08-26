@@ -1,4 +1,4 @@
-﻿using Contracts;
+﻿using Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace PolicyInformationPoint.Subject
             binding.ReceiveTimeout = new TimeSpan(0, 10, 0);
             binding.SendTimeout = new TimeSpan(0, 10, 0);
 
-            string address = "net.tcp://localhost:5000/AuthenticationService";
+            string address = "net.tcp://localhost:5000/SubjectAdministrationService";
 
             using (SubjectInfProxy proxy = new SubjectInfProxy(binding, new EndpointAddress(new Uri(address))))
             {

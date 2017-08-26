@@ -1,8 +1,0 @@
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\AuthenticationService\bin\Debug\AuthenticationService.exe.config
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\AuthenticationService\bin\Debug\AuthenticationService.exe
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\AuthenticationService\bin\Debug\AuthenticationService.pdb
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\AuthenticationService\bin\Debug\Contracts.dll
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\AuthenticationService\bin\Debug\Contracts.pdb
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\AuthenticationService\obj\Debug\AuthenticationService.exe
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\AuthenticationService\obj\Debug\AuthenticationService.pdb
-C:\Users\jelac\OneDrive\PSI\Blok7_projekat_security\Repo\XACML_ABAC\AuthenticationService\obj\Debug\AuthenticationService.csprojResolveAssemblyReference.cache

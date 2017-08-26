@@ -1,4 +1,4 @@
-﻿using Contracts;
+﻿using Common;
 using PolicyDecisionPoint.XACML_CombAlg;
 using System;
 using System.Collections.Generic;

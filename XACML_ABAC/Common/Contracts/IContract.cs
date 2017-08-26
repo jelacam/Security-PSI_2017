@@ -7,24 +7,18 @@ using System.ServiceModel;
 using System.IdentityModel.Services;
 using System.Security.Permissions;
 
-namespace Contracts
+namespace Common
 {
-    [ServiceContract(CallbackContract = typeof(IContractCallback), SessionMode = SessionMode.Required)]
+    [ServiceContract]
     public interface IContract
     {
-        [OperationContract(Action = "view_remaining courses")]
+        [OperationContract(Action = "view_rc")]
         string ViewRemainingCourses();
 
-        [OperationContract(Action = "edit_remaining courses")]
+        [OperationContract(Action = "edit_rc")]
         string EditRemainingCourses();
 
-        [OperationContract(Action = "register_exam")]
+        [OperationContract(Action = "register_ex")]
         string RegisterExam();
-    }
-
-    public interface IContractCallback
-    {
-        [OperationContract]
-        string RequestClientIpAddress();
     }
 }
